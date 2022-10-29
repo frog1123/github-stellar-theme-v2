@@ -18,6 +18,28 @@ const varArray = [
   { property: 'color-canvas-overlay', savedName: 'colorCanvasOverlay' }
 ];
 
+window.onload = () => {
+  const fn = async () => {
+    varArray.forEach(obj => {
+      const node = document.createElement('div');
+      const nodeClass = document.createAttribute('class');
+      nodeClass.value = 'input-container';
+      node.setAttributeNode(nodeClass);
+      const p = document.createElement('p');
+      p.textContent = obj.property;
+      const input = document.createElement('input');
+      const inputId = document.createAttribute('id');
+      inputId.value = obj.property;
+      input.setAttributeNode(inputId);
+      node.appendChild(p);
+      node.appendChild(input);
+      (document.getElementById('input-containers-container') as any).appendChild(node);
+    });
+  };
+
+  fn().then(() => restoreOptions());
+};
+
 // saves options to chrome.storage
 const saveOptions = async () => {
   varArray.forEach(obj => {
@@ -59,7 +81,6 @@ const clearAllInputValues = () => {
   });
 };
 
-document.addEventListener('DOMContentLoaded', restoreOptions);
 document!.getElementById('save')!.addEventListener('click', () => {
   saveOptions().then(() => {
     restoreOptions();
