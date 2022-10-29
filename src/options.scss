@@ -27,6 +27,10 @@ p {
   grid-auto-flow: row;
   grid-gap: 10px;
   place-items: center;
+
+  & h1 {
+    margin: 0;
+  }
 }
 
 #logo {
@@ -72,20 +76,45 @@ p {
   display: grid;
   grid-auto-flow: column;
   grid-gap: 10px;
-  place-items: center;
+
+  & p {
+    margin: 0;
+  }
+
+  & input {
+    margin-left: auto;
+    width: 140px;
+    height: 20px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: #111111;
+    padding: 4px;
+    font-size: 24px;
+  }
 }
 
-.input-container p {
-  margin: 0;
-}
-
-.input-container input {
-  height: 20px;
-  border-radius: 6px;
-  border: none;
-  outline: none;
+#save {
   color: #fff;
-  background-color: #111111;
-  padding: 4px;
   font-size: 24px;
+  border: none;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  background-image: linear-gradient(45deg, #9335f2 0%, #aa74e0 100%);
+  background-image: -webkit-linear-gradient(45deg, #9335f2 0%, #aa74e0 100%);
+  background-image: -moz-linear-gradient(45deg, #9335f2 0%, #aa74e0 100%);
+  transition-duration: 250ms;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-10px);
+  }
+}
+
+#input-containers-container {
+  display: grid;
+  grid-auto-flow: row;
+  grid-gap: 6px;
 }
