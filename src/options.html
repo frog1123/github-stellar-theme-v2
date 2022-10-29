@@ -1,15 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>options</title>
+  <script src="options.js" defer></script>
+  <title>My Test Extension Options</title>
 </head>
 
 <body>
-  <h1>options</h1>
+
+  Favorite color:
+  <select id="color">
+    <option value="red">red</option>
+    <option value="green">green</option>
+    <option value="blue">blue</option>
+    <option value="yellow">yellow</option>
+  </select>
+
+  <label>
+    <input type="checkbox" id="like">
+    I like colors.
+  </label>
+
+  <div id="status"></div>
+  <button id="save">Save</button>
+
 </body>
 
 </html>

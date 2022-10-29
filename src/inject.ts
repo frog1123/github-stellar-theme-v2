@@ -1,5 +1,15 @@
 console.log('%c 🪐| stellar theme injected', 'color: #9335f2');
 
+chrome.storage.sync.get(
+  {
+    favoriteColor: 'red',
+    likesColor: true
+  },
+  items => {
+    console.log(items.favoriteColor);
+  }
+);
+
 const sheet = document.styleSheets[0];
 
 const injectedSheet = `:root {
