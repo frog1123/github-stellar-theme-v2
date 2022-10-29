@@ -2,19 +2,19 @@ console.log('%c 🪐| stellar theme injected', 'color: #9335f2');
 
 chrome.storage.sync.get(
   {
-    favoriteColor: 'red',
+    colorCanvasDefault: '#0c0c0c',
     likesColor: true
   },
   items => {
-    console.log(items.favoriteColor);
+    const injectedSheet = `
+    :root {
+      --color-canvas-default: ${items.colorCanvasDefault} !important;
+      --color-header-bg: #111111 !important;
+    }`;
+
+    const sheet = document.styleSheets[0];
+    sheet.insertRule(injectedSheet);
+
+    console.log(`%c 🪐 | theme loaded:${injectedSheet}`, 'color: #9335f2');
   }
 );
-
-const sheet = document.styleSheets[0];
-
-const injectedSheet = `:root {
-  --color-canvas-default: #0c0c0c !important;
-  --color-header-bg: #111111 !important;
-}`;
-
-sheet.insertRule(injectedSheet);
