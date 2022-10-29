@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+  background-color: #0c0c0c;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+p {
+  font-size: 24px;
+}
+
+::selection {
+  background: #9335f2;
+  color: #fff;
+}
+
+#main {
+  margin-top: 20px;
+  width: max-content;
+  margin: auto;
+  display: grid;
+  grid-auto-flow: row;
+  grid-gap: 10px;
+  place-items: center;
+}
+
+#logo {
+  width: 200px;
+  height: 200px;
+}
+
+.float-animation {
+  -webkit-animation: float 2.5s;
+  animation: float 2.5s;
+  animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes float {
+  0% {
+    -webkit-transform: translateY(0px);
+  }
+
+  50% {
+    -webkit-transform: translateY(5px);
+  }
+
+  100% {
+    -webkit-transform: translateY(0px);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(5px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.input-container {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 10px;
+  place-items: center;
+}
+
+.input-container p {
+  margin: 0;
+}
+
+.input-container input {
+  height: 20px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background-color: #111111;
+  padding: 4px;
+  font-size: 24px;
+}

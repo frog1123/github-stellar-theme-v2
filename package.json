@@ -8,7 +8,7 @@
     "ts:w": "tsc -w",
     "sass:w": "sass --watch --style=compressed --no-source-map src/styles:dist/styles",
     "ts": "tsc",
-    "sass": "sass --style=compressed --no-source-map src/inject.scss dist/inject.css",
+    "sass": "sass --style=compressed --no-source-map src:dist",
     "manifest": "node scripts/manifest.js",
     "icons": "node scripts/icons.js",
     "popup": "node scripts/popup.js",

@@ -2,21 +2,28 @@
 <html>
 
 <head>
+  <link rel="stylesheet" href="options.css">
   <script src="options.js" defer></script>
   <title>settings</title>
 </head>
 
-<body>
-  <h1>settings</h1>
+<body dir="ltr">
+  <div id="main">
+    <img id="logo" class="float-animation" src="logo.svg" />
+    <h1>settings</h1>
+    <div class="input-container">
+      <p>color-canvas-default</p>
+      <input id="color-canvas-default">
+    </div>
+    <div class="input-container">
+      <p>color-canvas-default</p>
+      <input id="color-header-bg">
+    </div>
 
-  <div>
-    <p>color-canvas-default</p>
-    <input id="color-canvas-default">
+    <div id="status"></div>
+    <button id="save">Save</button>
+    <p id="status"></p>
   </div>
-
-  <div id="status"></div>
-  <button id="save">Save</button>
-
 </body>
 
 </html>
