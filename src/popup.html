@@ -5,84 +5,15 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="popup.css">
   <script src="popup.js" defer></script>
-  <title>Document</title>
+  <title>popup</title>
 </head>
-
-<style>
-  #container {
-    display: grid;
-    grid-auto-flow: row;
-    place-items: center;
-    grid-gap: 10px;
-  }
-
-  #logo-img {
-    width: 128px;
-    height: 128px;
-  }
-
-  body {
-    background-color: #0c0c0c;
-    min-width: 200px;
-  }
-
-  button {
-    background-color: #9335f2;
-    transition-duration: 250ms;
-    border-radius: 20px;
-    border: none;
-    cursor: pointer;
-  }
-
-  button h1 {
-    color: #fff;
-    font-size: 24px;
-    margin: 0;
-  }
-
-  button:hover {
-    background-color: #aa74e0;
-  }
-
-  .float-animation {
-    -webkit-animation: float 2.5s;
-    animation: float 2.5s;
-    animation-iteration-count: infinite;
-  }
-
-  @-webkit-keyframes float {
-    0% {
-      -webkit-transform: translateY(0px);
-    }
-
-    50% {
-      -webkit-transform: translateY(5px);
-    }
-
-    100% {
-      -webkit-transform: translateY(0px);
-    }
-  }
-
-  @keyframes float {
-    0% {
-      transform: translateY(0px);
-    }
-
-    50% {
-      transform: translateY(5px);
-    }
-
-    100% {
-      transform: translateY(0px);
-    }
-  }
-</style>
 
 <body>
   <div id="container">
     <img id="logo-img" class="float-animation" src="logo.svg" />
+    <h1 id="title-text">stellar <span>v2</span></h1>
     <button id="options-btn">
       <h1>settings</h1>
     </button>
