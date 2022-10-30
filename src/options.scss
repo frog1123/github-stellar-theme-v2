@@ -12,11 +12,11 @@ h1 {
 
 p {
   font-size: 24px;
+  margin: 0;
 }
 
-h4 {
-  font-size: 32px;
-  margin: 0;
+.title-p {
+  color: gray;
 }
 
 ::selection {
@@ -117,6 +117,33 @@ h4 {
   }
 }
 
+.input-container-large {
+  display: grid;
+  grid-auto-flow: row;
+  grid-gap: 6px;
+
+  & p {
+    margin: 0;
+  }
+
+  & textarea {
+    width: 100%;
+    min-height: 20px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: #111111;
+    padding: 4px;
+    font-size: 24px;
+    resize: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
 #save {
   margin-top: 10px;
   color: #fff;
@@ -136,8 +163,17 @@ h4 {
   }
 }
 
-#input-containers-container {
+#input-containers-container,
+#custom-stellar-inputs-container {
+  width: 100%;
   display: grid;
   grid-auto-flow: row;
   grid-gap: 6px;
+}
+
+.line {
+  height: 2px;
+  width: 100%;
+  background-color: gray;
+  border-radius: 10px;
 }

@@ -18,6 +18,14 @@ const varArray = [
   { property: 'color-canvas-overlay', savedName: 'colorCanvasOverlay' }
 ];
 
+const stellarVarArray = [
+  { property: 'stellar-injected-color-selection', savedName: 'stellarInjectedColorSelection' },
+  { property: 'stellar-injected-color-loading-bar', savedName: 'stellarInjectedColorLoadingBar' },
+  { property: 'stellar-injected-color-scrollbar-track', savedName: 'stellarInjectedColorScrollbarTrack' },
+  { property: 'stellar-injected-color-scrollbar-thumb', savedName: 'stellarInjectedColorScrollbarThumb' },
+  { property: 'stellar-injected-transition-duration', savedName: 'stellarInjectedTransitionDuration' }
+];
+
 window.onload = () => {
   const fn = async () => {
     varArray.forEach(obj => {
@@ -38,11 +46,24 @@ window.onload = () => {
   };
 
   fn().then(() => restoreOptions());
+
+  // textarea resize
+  const textareas = document.querySelectorAll('textarea');
+  textareas.forEach(function (textarea) {
+    textarea.setAttribute('style', 'height:' + textarea.scrollHeight + 'px;overflow-y:hidden;');
+    textarea.oninput = function () {
+      textarea.style.height = 0 as any;
+      textarea.style.height = textarea.scrollHeight + 'px';
+    };
+  });
 };
 
 // saves options to chrome.storage
 const saveOptions = async () => {
   varArray.forEach(obj => {
+    saveOption(obj.property, obj.savedName);
+  });
+  stellarVarArray.forEach(obj => {
     saveOption(obj.property, obj.savedName);
   });
 
@@ -59,7 +80,12 @@ const restoreOptions = () => {
       colorCanvasSubtle: '#111111',
       colorPageHeaderBg: '#0c0c0c',
       colorAccentEmphasis: '#aa74e0',
-      colorCanvasOverlay: '#111111'
+      colorCanvasOverlay: '#111111',
+      stellarInjectedColorSelection: '#9335f2',
+      stellarInjectedColorLoadingBar: '#9335f2',
+      stellarInjectedColorScrollbarTrack: '#0f0f0e',
+      stellarInjectedColorScrollbarThumb: 'linear-gradient(to top, #9335f2 0%, #aa74e0 100%)',
+      stellarInjectedTransitionDuration: '250ms'
     },
     items => {
       (document.getElementById('color-canvas-default') as any).placeholder = items.colorCanvasDefault;
@@ -69,6 +95,12 @@ const restoreOptions = () => {
       (document.getElementById('color-page-header-bg') as any).placeholder = items.colorPageHeaderBg;
       (document.getElementById('color-accent-emphasis') as any).placeholder = items.colorAccentEmphasis;
       (document.getElementById('color-canvas-overlay') as any).placeholder = items.colorCanvasOverlay;
+      // stellar custom
+      (document.getElementById('stellar-injected-color-selection') as any).placeholder = items.stellarInjectedColorSelection;
+      (document.getElementById('stellar-injected-color-loading-bar') as any).placeholder = items.stellarInjectedColorLoadingBar;
+      (document.getElementById('stellar-injected-color-scrollbar-track') as any).placeholder = items.stellarInjectedColorScrollbarTrack;
+      (document.getElementById('stellar-injected-color-scrollbar-thumb') as any).placeholder = items.stellarInjectedColorScrollbarThumb;
+      (document.getElementById('stellar-injected-transition-duration') as any).placeholder = items.stellarInjectedTransitionDuration;
     }
   );
 };

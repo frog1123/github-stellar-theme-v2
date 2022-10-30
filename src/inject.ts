@@ -8,7 +8,12 @@ chrome.storage.sync.get(
     colorCanvasSubtle: '#111111',
     colorPageHeaderBg: '#0c0c0c',
     colorAccentEmphasis: '#aa74e0',
-    colorCanvasOverlay: '#111111'
+    colorCanvasOverlay: '#111111',
+    stellarInjectedColorSelection: '#9335f2',
+    stellarInjectedColorLoadingBar: '#9335f2',
+    stellarInjectedColorScrollbarTrack: '#0f0f0e',
+    stellarInjectedColorScrollbarThumb: 'linear-gradient(to top, #9335f2 0%, #aa74e0 100%)',
+    stellarInjectedTransitionDuration: '250ms'
   },
   items => {
     const injectedSheet = `
@@ -20,6 +25,11 @@ chrome.storage.sync.get(
       --color-page-header-bg: ${items.colorPageHeaderBg} !important;
       --color-accent-emphasis: ${items.colorAccentEmphasis} !important;
       --color-canvas-overlay: ${items.colorCanvasOverlay} !important;
+      --stellar-injected-color-selection: ${items.stellarInjectedColorSelection} !important;
+      --stellar-injected-color-loading-bar: ${items.stellarInjectedColorLoadingBar} !important;
+      --stellar-injected-color-scrollbar-track: ${items.stellarInjectedColorScrollbarTrack} !important;
+      --stellar-injected-color-scrollbar-thumb: ${items.stellarInjectedColorScrollbarThumb} !important;
+      --stellar-injected-transition-duration: ${items.stellarInjectedTransitionDuration} !important;
     }`;
 
     const sheet = document.styleSheets[0];

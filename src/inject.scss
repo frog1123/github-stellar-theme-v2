@@ -1,0 +1,29 @@
+* {
+  transition-duration: var(--stellar-injected-transition-duration);
+  -webkit-transition-duration: var(--stellar-injected-transition-duration);
+  -moz-transition-duration: var(--stellar-injected-transition-duration);
+  -o-transition-duration: var(--stellar-injected-transition-duration);
+}
+
+::selection {
+  background: var(--stellar-injected-color-selection) !important;
+  color: #fff;
+}
+
+// loading bar
+div.turbo-progress-bar {
+  background-color: var(--stellar-injected-color-loading-bar) !important;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--stellar-injected-color-scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: var(--stellar-injected-color-scrollbar-thumb) !important;
+}
