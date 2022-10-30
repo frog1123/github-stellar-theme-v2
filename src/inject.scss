@@ -33,3 +33,25 @@ div.turbo-progress-bar {
   background-image: var(--stellar-injected-color-notifcation) !important;
   border: var(--stellar-injected-color-notifcation-border) !important;
 }
+
+// search bar clicked
+.header-search-wrapper.focus {
+  background-color: var(--color-header-search-bg) !important;
+}
+
+// checkboxes
+input[type='checkbox'] {
+  &:active {
+    accent-color: var(--stellar-injected-color-checkbox-active) !important;
+  }
+
+  &:checked {
+    accent-color: var(--stellar-injected-color-checkbox-focus) !important;
+  }
+}
+
+input[type='radio'] {
+  &:checked {
+    accent-color: var(--stellar-injected-color-radio-focus) !important;
+  }
+}

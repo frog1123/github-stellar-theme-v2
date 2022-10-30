@@ -8,6 +8,8 @@ const saveOption = (id: string, savedName: string) => {
   chrome.storage.sync.set(itemToSave, () => {});
 };
 
+// { property: 'property', savedName: 'savedName' },
+
 const varArray = [
   { property: 'color-canvas-default', savedName: 'colorCanvasDefault' },
   { property: 'color-header-bg', savedName: 'colorHeaderBg' },
@@ -23,7 +25,14 @@ const varArray = [
   { property: 'color-calendar-graph-day-L1-bg', savedName: 'colorCalanderGraphDayL1Bg' },
   { property: 'color-calendar-graph-day-L2-bg', savedName: 'colorCalanderGraphDayL2Bg' },
   { property: 'color-calendar-graph-day-L3-bg', savedName: 'colorCalanderGraphDayL3Bg' },
-  { property: 'color-calendar-graph-day-L4-bg', savedName: 'colorCalanderGraphDayL4Bg' }
+  { property: 'color-calendar-graph-day-L4-bg', savedName: 'colorCalanderGraphDayL4Bg' },
+  { property: 'color-neutral-muted', savedName: 'colorNeutralMuted' },
+  { property: 'color-btn-bg', savedName: 'colorBtnBg' },
+  { property: 'color-btn-hover-bg', savedName: 'colorBtnHoverBg' },
+  { property: 'color-bg-hover-border', savedName: 'colorBgHoverBorder' },
+  { property: 'color-header-search-bg', savedName: 'colorHeaderSearchBg' },
+  { property: 'color-canvas-inset', savedName: 'colorCanvasInset' },
+  { property: 'color-accent-muted', savedName: 'colorAccentMuted' }
 ];
 
 const stellarVarArray = [
@@ -33,7 +42,10 @@ const stellarVarArray = [
   { property: 'stellar-injected-color-scrollbar-thumb', savedName: 'stellarInjectedColorScrollbarThumb' },
   { property: 'stellar-injected-transition-duration', savedName: 'stellarInjectedTransitionDuration' },
   { property: 'stellar-injected-color-notification', savedName: 'stellarInjectedColorNotifcation' },
-  { property: 'stellar-injected-notification-border', savedName: 'stellarInjectedColorNotifcationBorder' }
+  { property: 'stellar-injected-color-notification-border', savedName: 'stellarInjectedColorNotifcationBorder' },
+  { property: 'stellar-injected-color-checkbox-active', savedName: 'stellarInjectedColorCheckboxActive' },
+  { property: 'stellar-injected-color-checkbox-focus', savedName: 'stellarInjectedColorCheckboxFocus' },
+  { property: 'stellar-injected-color-radio-focus', savedName: 'stellarInjectedColorRadioFocus' }
 ];
 
 window.onload = () => {
@@ -99,45 +111,38 @@ const restoreOptions = () => {
       colorCalanderGraphDayL2Bg: '#9335f2',
       colorCalanderGraphDayL3Bg: '#aa74e0',
       colorCalanderGraphDayL4Bg: '#c7a4ea',
+      colorNeutralMuted: '#111111',
+      colorBtnBg: '#111111',
+      colorBtnHoverBg: '#161616',
+      colorBgHoverBorder: '#5b5b5b',
+      colorHeaderSearchBg: '#111111',
+      colorCanvasInset: '#111111',
+      colorAccentMuted: '#9335f240',
       // stellar custom
       stellarInjectedColorSelection: '#9335f2',
       stellarInjectedColorLoadingBar: '#9335f2',
       stellarInjectedColorScrollbarTrack: '#0f0f0e',
       stellarInjectedColorScrollbarThumb: 'linear-gradient(to top, #9335f2 0%, #aa74e0 100%)',
-      stellarInjectedTransitionDuration: '50ms',
+      stellarInjectedTransitionDuration: '0ms',
       stellarInjectedColorNotifcation: 'linear-gradient(#9335f2, #9335f2)',
-      stellarInjectedColorNotifcationBorder: '2px solid #aa74e020'
+      stellarInjectedColorNotifcationBorder: '2px solid #aa74e020',
+      stellarInjectedColorCheckboxActive: '#ffffff',
+      stellarInjectedColorCheckboxFocus: '#9335f2',
+      stellarInjectedColorRadioFocus: '#9335f2'
     },
     items => {
       const setPlaceHolder = (id: string, val: string) => {
         (document.getElementById(id) as any).placeholder = val;
       };
 
-      // setPlaceHolder('', items.templateSavedName);
+      varArray.forEach(obj => {
+        setPlaceHolder(obj.property, items[obj.savedName]);
+      });
 
-      setPlaceHolder('color-canvas-default', items.colorCanvasDefault);
-      setPlaceHolder('color-header-bg', items.colorHeaderBg);
-      setPlaceHolder('color-accent-fg', items.colorAccentFg);
-      setPlaceHolder('color-canvas-subtle', items.colorCanvasSubtle);
-      setPlaceHolder('color-page-header-bg', items.colorPageHeaderBg);
-      setPlaceHolder('color-accent-emphasis', items.colorAccentEmphasis);
-      setPlaceHolder('color-canvas-overlay', items.colorCanvasOverlay);
-      setPlaceHolder('color-primer-border-active', items.colorPrimerBorderActive);
-      setPlaceHolder('color-accent-subtle', items.colorAccentSubtle);
-      setPlaceHolder('color-calendar-graph-day-bg', items.colorCalanderGraphDayBg);
-      setPlaceHolder('color-calendar-graph-day-border', items.colorCalanderGraphDayBorder);
-      setPlaceHolder('color-calendar-graph-day-L1-bg', items.colorCalanderGraphDayL1Bg);
-      setPlaceHolder('color-calendar-graph-day-L2-bg', items.colorCalanderGraphDayL2Bg);
-      setPlaceHolder('color-calendar-graph-day-L3-bg', items.colorCalanderGraphDayL3Bg);
-      setPlaceHolder('color-calendar-graph-day-L4-bg', items.colorCalanderGraphDayL4Bg);
       // stellar custom
-      setPlaceHolder('stellar-injected-color-selection', items.stellarInjectedColorSelection);
-      setPlaceHolder('stellar-injected-color-loading-bar', items.stellarInjectedColorLoadingBar);
-      setPlaceHolder('stellar-injected-color-scrollbar-track', items.stellarInjectedColorScrollbarTrack);
-      setPlaceHolder('stellar-injected-color-scrollbar-thumb', items.stellarInjectedColorScrollbarThumb);
-      setPlaceHolder('stellar-injected-transition-duration', items.stellarInjectedTransitionDuration);
-      setPlaceHolder('stellar-injected-color-notification', items.stellarInjectedColorNotifcation);
-      setPlaceHolder('stellar-injected-color-notification-border', items.stellarInjectedColorNotifcationBorder);
+      stellarVarArray.forEach(obj => {
+        setPlaceHolder(obj.property, items[obj.savedName]);
+      });
     }
   );
 };
