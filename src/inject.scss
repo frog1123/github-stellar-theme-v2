@@ -27,3 +27,9 @@ div.turbo-progress-bar {
   border-radius: 8px;
   background: var(--stellar-injected-color-scrollbar-thumb) !important;
 }
+
+// notification icon
+#AppHeader-notifications-button > span {
+  background-image: var(--stellar-injected-color-notifcation) !important;
+  border: var(--stellar-injected-color-notifcation-border) !important;
+}

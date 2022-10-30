@@ -24,6 +24,19 @@ p {
   color: #fff;
 }
 
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f0f0e;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: linear-gradient(to top, #9335f2 0%, #aa74e0 100%);
+}
+
 #main {
   margin-top: 20px;
   width: max-content;
@@ -137,6 +150,7 @@ p {
     padding: 4px;
     font-size: 24px;
     resize: none;
+    box-sizing: border-box;
 
     &::-webkit-scrollbar {
       display: none;

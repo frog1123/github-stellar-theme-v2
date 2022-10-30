@@ -15,7 +15,15 @@ const varArray = [
   { property: 'color-canvas-subtle', savedName: 'colorCanvasSubtle' },
   { property: 'color-page-header-bg', savedName: 'colorPageHeaderBg' },
   { property: 'color-accent-emphasis', savedName: 'colorAccentEmphasis' },
-  { property: 'color-canvas-overlay', savedName: 'colorCanvasOverlay' }
+  { property: 'color-canvas-overlay', savedName: 'colorCanvasOverlay' },
+  { property: 'color-primer-border-active', savedName: 'colorPrimerBorderActive' },
+  { property: 'color-accent-subtle', savedName: 'colorAccentSubtle' },
+  { property: 'color-calendar-graph-day-bg', savedName: 'colorCalanderGraphDayBg' },
+  { property: 'color-calendar-graph-day-border', savedName: 'colorCalanderGraphDayBorder' },
+  { property: 'color-calendar-graph-day-L1-bg', savedName: 'colorCalanderGraphDayL1Bg' },
+  { property: 'color-calendar-graph-day-L2-bg', savedName: 'colorCalanderGraphDayL2Bg' },
+  { property: 'color-calendar-graph-day-L3-bg', savedName: 'colorCalanderGraphDayL3Bg' },
+  { property: 'color-calendar-graph-day-L4-bg', savedName: 'colorCalanderGraphDayL4Bg' }
 ];
 
 const stellarVarArray = [
@@ -23,7 +31,9 @@ const stellarVarArray = [
   { property: 'stellar-injected-color-loading-bar', savedName: 'stellarInjectedColorLoadingBar' },
   { property: 'stellar-injected-color-scrollbar-track', savedName: 'stellarInjectedColorScrollbarTrack' },
   { property: 'stellar-injected-color-scrollbar-thumb', savedName: 'stellarInjectedColorScrollbarThumb' },
-  { property: 'stellar-injected-transition-duration', savedName: 'stellarInjectedTransitionDuration' }
+  { property: 'stellar-injected-transition-duration', savedName: 'stellarInjectedTransitionDuration' },
+  { property: 'stellar-injected-color-notification', savedName: 'stellarInjectedColorNotifcation' },
+  { property: 'stellar-injected-notification-border', savedName: 'stellarInjectedColorNotifcationBorder' }
 ];
 
 window.onload = () => {
@@ -81,26 +91,53 @@ const restoreOptions = () => {
       colorPageHeaderBg: '#0c0c0c',
       colorAccentEmphasis: '#aa74e0',
       colorCanvasOverlay: '#111111',
+      colorPrimerBorderActive: '#9335f2',
+      colorAccentSubtle: '#aa74e020',
+      colorCalanderGraphDayBg: '#111111',
+      colorCalanderGraphDayBorder: '#11111120',
+      colorCalanderGraphDayL1Bg: '#5c2296',
+      colorCalanderGraphDayL2Bg: '#9335f2',
+      colorCalanderGraphDayL3Bg: '#aa74e0',
+      colorCalanderGraphDayL4Bg: '#c7a4ea',
+      // stellar custom
       stellarInjectedColorSelection: '#9335f2',
       stellarInjectedColorLoadingBar: '#9335f2',
       stellarInjectedColorScrollbarTrack: '#0f0f0e',
       stellarInjectedColorScrollbarThumb: 'linear-gradient(to top, #9335f2 0%, #aa74e0 100%)',
-      stellarInjectedTransitionDuration: '250ms'
+      stellarInjectedTransitionDuration: '50ms',
+      stellarInjectedColorNotifcation: 'linear-gradient(#9335f2, #9335f2)',
+      stellarInjectedColorNotifcationBorder: '2px solid #aa74e020'
     },
     items => {
-      (document.getElementById('color-canvas-default') as any).placeholder = items.colorCanvasDefault;
-      (document.getElementById('color-header-bg') as any).placeholder = items.colorHeaderBg;
-      (document.getElementById('color-accent-fg') as any).placeholder = items.colorAccentFg;
-      (document.getElementById('color-canvas-subtle') as any).placeholder = items.colorCanvasSubtle;
-      (document.getElementById('color-page-header-bg') as any).placeholder = items.colorPageHeaderBg;
-      (document.getElementById('color-accent-emphasis') as any).placeholder = items.colorAccentEmphasis;
-      (document.getElementById('color-canvas-overlay') as any).placeholder = items.colorCanvasOverlay;
+      const setPlaceHolder = (id: string, val: string) => {
+        (document.getElementById(id) as any).placeholder = val;
+      };
+
+      // setPlaceHolder('', items.templateSavedName);
+
+      setPlaceHolder('color-canvas-default', items.colorCanvasDefault);
+      setPlaceHolder('color-header-bg', items.colorHeaderBg);
+      setPlaceHolder('color-accent-fg', items.colorAccentFg);
+      setPlaceHolder('color-canvas-subtle', items.colorCanvasSubtle);
+      setPlaceHolder('color-page-header-bg', items.colorPageHeaderBg);
+      setPlaceHolder('color-accent-emphasis', items.colorAccentEmphasis);
+      setPlaceHolder('color-canvas-overlay', items.colorCanvasOverlay);
+      setPlaceHolder('color-primer-border-active', items.colorPrimerBorderActive);
+      setPlaceHolder('color-accent-subtle', items.colorAccentSubtle);
+      setPlaceHolder('color-calendar-graph-day-bg', items.colorCalanderGraphDayBg);
+      setPlaceHolder('color-calendar-graph-day-border', items.colorCalanderGraphDayBorder);
+      setPlaceHolder('color-calendar-graph-day-L1-bg', items.colorCalanderGraphDayL1Bg);
+      setPlaceHolder('color-calendar-graph-day-L2-bg', items.colorCalanderGraphDayL2Bg);
+      setPlaceHolder('color-calendar-graph-day-L3-bg', items.colorCalanderGraphDayL3Bg);
+      setPlaceHolder('color-calendar-graph-day-L4-bg', items.colorCalanderGraphDayL4Bg);
       // stellar custom
-      (document.getElementById('stellar-injected-color-selection') as any).placeholder = items.stellarInjectedColorSelection;
-      (document.getElementById('stellar-injected-color-loading-bar') as any).placeholder = items.stellarInjectedColorLoadingBar;
-      (document.getElementById('stellar-injected-color-scrollbar-track') as any).placeholder = items.stellarInjectedColorScrollbarTrack;
-      (document.getElementById('stellar-injected-color-scrollbar-thumb') as any).placeholder = items.stellarInjectedColorScrollbarThumb;
-      (document.getElementById('stellar-injected-transition-duration') as any).placeholder = items.stellarInjectedTransitionDuration;
+      setPlaceHolder('stellar-injected-color-selection', items.stellarInjectedColorSelection);
+      setPlaceHolder('stellar-injected-color-loading-bar', items.stellarInjectedColorLoadingBar);
+      setPlaceHolder('stellar-injected-color-scrollbar-track', items.stellarInjectedColorScrollbarTrack);
+      setPlaceHolder('stellar-injected-color-scrollbar-thumb', items.stellarInjectedColorScrollbarThumb);
+      setPlaceHolder('stellar-injected-transition-duration', items.stellarInjectedTransitionDuration);
+      setPlaceHolder('stellar-injected-color-notification', items.stellarInjectedColorNotifcation);
+      setPlaceHolder('stellar-injected-color-notification-border', items.stellarInjectedColorNotifcationBorder);
     }
   );
 };
