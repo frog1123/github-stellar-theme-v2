@@ -55,3 +55,17 @@ input[type='radio'] {
     accent-color: var(--stellar-injected-color-radio-focus) !important;
   }
 }
+
+.topic-tag-action,
+.delete-topic-button,
+.topic-tag {
+  transition-duration: var(--stellar-injected-topic-tac-transition-duration) !important;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+  &::-webkit-scrollbar {
+    // display: none;
+    height: 8px !important;
+  }
+}

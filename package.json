@@ -4,15 +4,16 @@
   "description": "stellar theme for github",
   "main": "index.js",
   "scripts": {
-    "build": "npm run ts && npm run sass && npm run manifest && npm run icons && npm run popup && npm run options",
+    "build": "npm run ts && npm run sass && npm run manifest && npm run icons && npm run popup && npm run options && npm run assets",
     "ts:w": "tsc -w",
-    "sass:w": "sass --watch --style=compressed --no-source-map src/styles:dist/styles",
+    "sass:w": "sass --watch --style=compressed --no-source-map src:dist",
     "ts": "tsc",
     "sass": "sass --style=compressed --no-source-map src:dist",
     "manifest": "node scripts/manifest.js",
     "icons": "node scripts/icons.js",
     "popup": "node scripts/popup.js",
-    "options": "node scripts/options.js"
+    "options": "node scripts/options.js",
+    "assets": "node scripts/assets.js"
   },
   "keywords": [],
   "author": "",

@@ -61,6 +61,18 @@ chrome.storage.sync.get(properties, items => {
       --color-header-search-bg: ${items.colorHeaderSearchBg} !important;
       --color-canvas-inset: ${items.colorCanvasInset} !important;
       --color-accent-muted: ${items.colorAccentMuted} !important;
+      --color-success-fg: #43c6b9 !important;
+      --color-success-emphasis: #30b0b2 !important;
+      --color-btn-primary-bg: #43c6b9 !important;
+      --color-btn-primary-hover-bg: #30b0b2 !important;
+      --color-btn-primary-selected-bg: #43c6b9 !important;
+      --color-btn-primary-disabled-bg: #30b0b250 !important;
+      --color-scale-yellow-2: #75e57c !important;
+      --color-shadow-small: 0 0 transparent !important;
+      --color-shadow-medium: 0 3px 6px #191919 !important;
+      --color-shadow-large: 0 8px 24px #191919 !important;
+      --color-shadow-extra-large: 0 12px 48px #191919 !important;
+      --color-diffstat-addition-bg: #51bfc1 !important;
       --stellar-injected-color-selection: ${items.stellarInjectedColorSelection} !important;
       --stellar-injected-color-loading-bar: ${items.stellarInjectedColorLoadingBar} !important;
       --stellar-injected-color-scrollbar-track: ${items.stellarInjectedColorScrollbarTrack} !important;
@@ -71,6 +83,7 @@ chrome.storage.sync.get(properties, items => {
       --stellar-injected-color-checkbox-active: ${items.stellarInjectedColorCheckboxActive} !important;
       --stellar-injected-color-checkbox-focus: ${items.stellarInjectedColorCheckboxFocus} !important;
       --stellar-injected-color-radio-focus: ${items.stellarInjectedColorRadioFocus} !important;
+      --stellar-injected-topic-tac-transition-duration: 250ms !important;
     }`;
 
   const sheet = document.styleSheets[0];

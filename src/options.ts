@@ -10,7 +10,13 @@ const saveOption = (id: string, savedName: string) => {
 
 // { property: 'property', savedName: 'savedName' },
 
-const varArray = [
+interface varArrayType {
+  property: string;
+  savedName: string;
+  inputType?: string;
+}
+
+const varArray: varArrayType[] = [
   { property: 'color-canvas-default', savedName: 'colorCanvasDefault' },
   { property: 'color-header-bg', savedName: 'colorHeaderBg' },
   { property: 'color-accent-fg', savedName: 'colorAccentFg' },
@@ -35,14 +41,14 @@ const varArray = [
   { property: 'color-accent-muted', savedName: 'colorAccentMuted' }
 ];
 
-const stellarVarArray = [
+const stellarVarArray: varArrayType[] = [
   { property: 'stellar-injected-color-selection', savedName: 'stellarInjectedColorSelection' },
   { property: 'stellar-injected-color-loading-bar', savedName: 'stellarInjectedColorLoadingBar' },
   { property: 'stellar-injected-color-scrollbar-track', savedName: 'stellarInjectedColorScrollbarTrack' },
-  { property: 'stellar-injected-color-scrollbar-thumb', savedName: 'stellarInjectedColorScrollbarThumb' },
+  { property: 'stellar-injected-color-scrollbar-thumb', savedName: 'stellarInjectedColorScrollbarThumb', inputType: 'large' },
   { property: 'stellar-injected-transition-duration', savedName: 'stellarInjectedTransitionDuration' },
-  { property: 'stellar-injected-color-notification', savedName: 'stellarInjectedColorNotifcation' },
-  { property: 'stellar-injected-color-notification-border', savedName: 'stellarInjectedColorNotifcationBorder' },
+  { property: 'stellar-injected-color-notification', savedName: 'stellarInjectedColorNotifcation', inputType: 'large' },
+  { property: 'stellar-injected-color-notification-border', savedName: 'stellarInjectedColorNotifcationBorder', inputType: 'large' },
   { property: 'stellar-injected-color-checkbox-active', savedName: 'stellarInjectedColorCheckboxActive' },
   { property: 'stellar-injected-color-checkbox-focus', savedName: 'stellarInjectedColorCheckboxFocus' },
   { property: 'stellar-injected-color-radio-focus', savedName: 'stellarInjectedColorRadioFocus' }
@@ -50,7 +56,24 @@ const stellarVarArray = [
 
 window.onload = () => {
   const fn = async () => {
-    varArray.forEach(obj => {
+    const createInputsFn = (obj: varArrayType, container: string) => {
+      if (obj.inputType === 'large') {
+        const node = document.createElement('div');
+        const nodeClass = document.createAttribute('class');
+        nodeClass.value = 'input-container-large';
+        node.setAttributeNode(nodeClass);
+        const p = document.createElement('p');
+        p.textContent = obj.property;
+        const textarea = document.createElement('textarea');
+        const textareaId = document.createAttribute('id');
+        textareaId.value = obj.property;
+        textarea.setAttributeNode(textareaId);
+        node.appendChild(p);
+        node.appendChild(textarea);
+        (document.getElementById(container) as any).appendChild(node);
+        return;
+      }
+
       const node = document.createElement('div');
       const nodeClass = document.createAttribute('class');
       nodeClass.value = 'input-container';
@@ -63,8 +86,11 @@ window.onload = () => {
       input.setAttributeNode(inputId);
       node.appendChild(p);
       node.appendChild(input);
-      (document.getElementById('input-containers-container') as any).appendChild(node);
-    });
+      (document.getElementById(container) as any).appendChild(node);
+    };
+
+    varArray.forEach(obj => createInputsFn(obj, 'input-containers-container'));
+    stellarVarArray.forEach(obj => createInputsFn(obj, 'custom-stellar-inputs-container'));
   };
 
   fn().then(() => restoreOptions());
