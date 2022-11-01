@@ -54,7 +54,7 @@ const varArray: varArrayType[] = [
 ];
 
 const stellarVarArray: varArrayType[] = [
-  { property: 'stellar-settings-enable-logs', savedName: 'stellarSettingEnableLogs' }
+  { property: 'stellar-settings-enable-logs', savedName: 'stellarSettingEnableLogs' },
   { property: 'stellar-injected-color-selection', savedName: 'stellarInjectedColorSelection' },
   { property: 'stellar-injected-color-loading-bar', savedName: 'stellarInjectedColorLoadingBar' },
   { property: 'stellar-injected-color-scrollbar-track', savedName: 'stellarInjectedColorScrollbarTrack' },

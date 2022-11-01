@@ -1,4 +1,9 @@
-console.log('%c 🪐| stellar theme injected', 'color: #9335f2');
+console.log(
+  '%c🪐| stellar theme injected %cv2\n%clogs can be enabled by enabling stellar-settings-enable-logs',
+  'color: #9335f2',
+  'background-color: #aa74e0; color: #ffffff; border-radius: 4px; padding-left: 4px; padding-right: 4px;',
+  ''
+);
 
 const properties = {
   // stellar settings start
@@ -52,9 +57,18 @@ const properties = {
   stellarInjectedTopicTagTransitionDuration: '250ms'
 };
 
-const newGet: (callback: (items: typeof properties) => void) => void = chrome.storage.sync.get;
+const newGet: (
+  keys:
+    | string
+    | string[]
+    | {
+        [key: string]: any;
+      }
+    | null,
+  callback: (items: typeof properties) => void
+) => void = chrome.storage.sync.get;
 
-chrome.storage.sync.get(properties, items => {
+newGet(properties, items => {
   const injectedSheet = `
     :root {
       --color-canvas-default: ${items.colorCanvasDefault} !important;
@@ -106,5 +120,5 @@ chrome.storage.sync.get(properties, items => {
 
   const sheet = document.styleSheets[0];
   sheet.insertRule(injectedSheet);
-  if (items.stellarSettingEnableLogs) console.table(properties);
+  if (items.stellarSettingEnableLogs === true) console.table(properties);
 });
