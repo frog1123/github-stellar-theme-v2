@@ -1,6 +1,9 @@
 console.log('%c 🪐| stellar theme injected', 'color: #9335f2');
 
 const properties = {
+  // stellar settings start
+  stellarSettingEnableLogs: false,
+  // stellar settings start
   colorCanvasDefault: '#0c0c0c',
   colorHeaderBg: '#111111',
   colorAccentFg: '#9335f2',
@@ -23,6 +26,18 @@ const properties = {
   colorHeaderSearchBg: '#111111',
   colorCanvasInset: '#111111',
   colorAccentMuted: '#9335f240',
+  colorSuccessFg: '#43c6b9',
+  colorSuccessEmphasis: '#30b0b2',
+  colorBtnPrimaryBg: '#43c6b9',
+  colorBtnPrimaryHoverBg: '#30b0b2',
+  colorBtnPrimarySelectedBg: '#43c6b9',
+  colorBtnPrimaryDisabledBg: '#30b0b250',
+  colorScaleYellow2: '#75e57c',
+  colorShadowSmall: '0 0 transparent',
+  colorShadowMedium: '0 3px 6px #191919',
+  colorShadowLarge: '0 8px 24px #191919',
+  colorShadowExtraLarge: '0 12px 48px #191919',
+  colorDiffstatAdditionBg: '#51bfc1',
   // stellar custom
   stellarInjectedColorSelection: '#9335f2',
   stellarInjectedColorLoadingBar: '#9335f2',
@@ -33,8 +48,11 @@ const properties = {
   stellarInjectedColorNotifcationBorder: '2px solid #aa74e020',
   stellarInjectedColorCheckboxActive: '#ffffff',
   stellarInjectedColorCheckboxFocus: '#9335f2',
-  stellarInjectedColorRadioFocus: '#9335f2'
+  stellarInjectedColorRadioFocus: '#9335f2',
+  stellarInjectedTopicTagTransitionDuration: '250ms'
 };
+
+const newGet: (callback: (items: typeof properties) => void) => void = chrome.storage.sync.get;
 
 chrome.storage.sync.get(properties, items => {
   const injectedSheet = `
@@ -61,18 +79,18 @@ chrome.storage.sync.get(properties, items => {
       --color-header-search-bg: ${items.colorHeaderSearchBg} !important;
       --color-canvas-inset: ${items.colorCanvasInset} !important;
       --color-accent-muted: ${items.colorAccentMuted} !important;
-      --color-success-fg: #43c6b9 !important;
-      --color-success-emphasis: #30b0b2 !important;
-      --color-btn-primary-bg: #43c6b9 !important;
-      --color-btn-primary-hover-bg: #30b0b2 !important;
-      --color-btn-primary-selected-bg: #43c6b9 !important;
-      --color-btn-primary-disabled-bg: #30b0b250 !important;
-      --color-scale-yellow-2: #75e57c !important;
-      --color-shadow-small: 0 0 transparent !important;
-      --color-shadow-medium: 0 3px 6px #191919 !important;
-      --color-shadow-large: 0 8px 24px #191919 !important;
-      --color-shadow-extra-large: 0 12px 48px #191919 !important;
-      --color-diffstat-addition-bg: #51bfc1 !important;
+      --color-success-fg: ${items.colorSuccessFg} !important;
+      --color-success-emphasis: ${items.colorSuccessEmphasis} !important;
+      --color-btn-primary-bg: ${items.colorBtnPrimaryBg} !important;
+      --color-btn-primary-hover-bg: ${items.colorBtnPrimaryHoverBg} !important;
+      --color-btn-primary-selected-bg: ${items.colorBtnPrimarySelectedBg} !important;
+      --color-btn-primary-disabled-bg: ${items.colorBtnPrimaryDisabledBg} !important;
+      --color-scale-yellow-2: ${items.colorScaleYellow2} !important;
+      --color-shadow-small: ${items.colorShadowMedium} !important;
+      --color-shadow-medium: ${items.colorShadowLarge} !important;
+      --color-shadow-large: ${items.colorShadowLarge} !important;
+      --color-shadow-extra-large: ${items.colorShadowExtraLarge} !important;
+      --color-diffstat-addition-bg: ${items.colorDiffstatAdditionBg} !important;
       --stellar-injected-color-selection: ${items.stellarInjectedColorSelection} !important;
       --stellar-injected-color-loading-bar: ${items.stellarInjectedColorLoadingBar} !important;
       --stellar-injected-color-scrollbar-track: ${items.stellarInjectedColorScrollbarTrack} !important;
@@ -83,11 +101,10 @@ chrome.storage.sync.get(properties, items => {
       --stellar-injected-color-checkbox-active: ${items.stellarInjectedColorCheckboxActive} !important;
       --stellar-injected-color-checkbox-focus: ${items.stellarInjectedColorCheckboxFocus} !important;
       --stellar-injected-color-radio-focus: ${items.stellarInjectedColorRadioFocus} !important;
-      --stellar-injected-topic-tac-transition-duration: 250ms !important;
+      --stellar-injected-topic-tag-transition-duration: ${items.stellarInjectedTopicTagTransitionDuration} !important;
     }`;
 
   const sheet = document.styleSheets[0];
   sheet.insertRule(injectedSheet);
-
-  console.log(`%c 🪐 | theme loaded:${injectedSheet}`, 'color: #9335f2');
+  if (items.stellarSettingEnableLogs) console.table(properties);
 });

@@ -1,6 +1,6 @@
 {
   "name": "github-stellar-theme-v2",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "stellar theme for github",
   "main": "index.js",
   "scripts": {

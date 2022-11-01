@@ -5,6 +5,7 @@ body {
   color: #fff;
   font-family: 'Roboto', sans-serif;
   cursor: url('./crosshair.svg'), default !important;
+  padding-bottom: 60px;
 }
 
 h1 {
@@ -130,6 +131,7 @@ p {
     font-size: 24px;
     font-family: 'Roboto', sans-serif;
     cursor: url('./crosshair.svg'), default !important;
+    user-select: none;
   }
 }
 
@@ -144,18 +146,20 @@ p {
 
   & textarea {
     width: 100%;
-    min-height: 20px;
+    height: 28px;
     border-radius: 6px;
     border: none;
     outline: none;
     color: #fff;
     background-color: #111111;
-    padding: 4px;
+    padding: 0;
+    padding-left: 4px !important;
     font-size: 24px;
     resize: none;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
     cursor: url('./crosshair.svg'), default !important;
+    user-select: none;
 
     &::-webkit-scrollbar {
       display: none;

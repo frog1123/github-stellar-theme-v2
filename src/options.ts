@@ -38,10 +38,23 @@ const varArray: varArrayType[] = [
   { property: 'color-bg-hover-border', savedName: 'colorBgHoverBorder' },
   { property: 'color-header-search-bg', savedName: 'colorHeaderSearchBg' },
   { property: 'color-canvas-inset', savedName: 'colorCanvasInset' },
-  { property: 'color-accent-muted', savedName: 'colorAccentMuted' }
+  { property: 'color-accent-muted', savedName: 'colorAccentMuted' },
+  { property: 'color-success-fg', savedName: 'colorSuccessFg' },
+  { property: 'color-success-emphasis', savedName: 'colorSuccessEmphasis' },
+  { property: 'color-btn-primary-bg', savedName: 'colorBtnPrimaryBg' },
+  { property: 'color-btn-primary-hover-bg', savedName: 'colorBtnPrimaryHoverBg' },
+  { property: 'color-btn-primary-selected-bg', savedName: 'colorBtnPrimarySelectedBg' },
+  { property: 'color-btn-primary-disabled-bg', savedName: 'colorBtnPrimaryDisabledBg' },
+  { property: 'color-scale-yellow-2', savedName: 'colorScaleYellow2' },
+  { property: 'color-shadow-small', savedName: 'colorShadowSmall', inputType: 'large' },
+  { property: 'color-shadow-medium', savedName: 'colorShadowMedium', inputType: 'large' },
+  { property: 'color-shadow-large', savedName: 'colorShadowLarge', inputType: 'large' },
+  { property: 'color-shadow-extra-large', savedName: 'colorShadowExtraLarge', inputType: 'large' },
+  { property: 'color-diffstat-addition-bg', savedName: 'colorDiffstatAdditionBg' }
 ];
 
 const stellarVarArray: varArrayType[] = [
+  { property: 'stellar-settings-enable-logs', savedName: 'stellarSettingEnableLogs' }
   { property: 'stellar-injected-color-selection', savedName: 'stellarInjectedColorSelection' },
   { property: 'stellar-injected-color-loading-bar', savedName: 'stellarInjectedColorLoadingBar' },
   { property: 'stellar-injected-color-scrollbar-track', savedName: 'stellarInjectedColorScrollbarTrack' },
@@ -51,7 +64,8 @@ const stellarVarArray: varArrayType[] = [
   { property: 'stellar-injected-color-notification-border', savedName: 'stellarInjectedColorNotifcationBorder', inputType: 'large' },
   { property: 'stellar-injected-color-checkbox-active', savedName: 'stellarInjectedColorCheckboxActive' },
   { property: 'stellar-injected-color-checkbox-focus', savedName: 'stellarInjectedColorCheckboxFocus' },
-  { property: 'stellar-injected-color-radio-focus', savedName: 'stellarInjectedColorRadioFocus' }
+  { property: 'stellar-injected-color-radio-focus', savedName: 'stellarInjectedColorRadioFocus' },
+  { property: 'stellar-injected-topic-tag-transition-duration', savedName: 'stellarInjectedTopicTagTransitionDuration' }
 ];
 
 window.onload = () => {
@@ -122,6 +136,9 @@ const saveOptions = async () => {
 const restoreOptions = () => {
   chrome.storage.sync.get(
     {
+      // stellar settings start
+      stellarSettingEnableLogs: false,
+      // stellar settings start
       colorCanvasDefault: '#0c0c0c',
       colorHeaderBg: '#111111',
       colorAccentFg: '#9335f2',
@@ -144,6 +161,18 @@ const restoreOptions = () => {
       colorHeaderSearchBg: '#111111',
       colorCanvasInset: '#111111',
       colorAccentMuted: '#9335f240',
+      colorSuccessFg: '#43c6b9',
+      colorSuccessEmphasis: '#30b0b2',
+      colorBtnPrimaryBg: '#43c6b9',
+      colorBtnPrimaryHoverBg: '#30b0b2',
+      colorBtnPrimarySelectedBg: '#43c6b9',
+      colorBtnPrimaryDisabledBg: '#30b0b250',
+      colorScaleYellow2: '#75e57c',
+      colorShadowSmall: '0 0 transparent',
+      colorShadowMedium: '0 3px 6px #191919',
+      colorShadowLarge: '0 8px 24px #191919',
+      colorShadowExtraLarge: '0 12px 48px #191919',
+      colorDiffstatAdditionBg: '#51bfc1',
       // stellar custom
       stellarInjectedColorSelection: '#9335f2',
       stellarInjectedColorLoadingBar: '#9335f2',
@@ -154,7 +183,8 @@ const restoreOptions = () => {
       stellarInjectedColorNotifcationBorder: '2px solid #aa74e020',
       stellarInjectedColorCheckboxActive: '#ffffff',
       stellarInjectedColorCheckboxFocus: '#9335f2',
-      stellarInjectedColorRadioFocus: '#9335f2'
+      stellarInjectedColorRadioFocus: '#9335f2',
+      stellarInjectedTopicTagTransitionDuration: '250ms'
     },
     items => {
       const setPlaceHolder = (id: string, val: string) => {

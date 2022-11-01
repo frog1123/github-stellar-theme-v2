@@ -59,7 +59,7 @@ input[type='radio'] {
 .topic-tag-action,
 .delete-topic-button,
 .topic-tag {
-  transition-duration: var(--stellar-injected-topic-tac-transition-duration) !important;
+  transition-duration: var(--stellar-injected-topic-tag-transition-duration) !important;
 }
 
 .markdown-body .highlight pre,
