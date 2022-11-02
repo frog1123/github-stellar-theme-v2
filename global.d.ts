@@ -10,5 +10,11 @@ declare namespace chrome.storage {
         | null,
       callback: (items: T) => void
     ) => void;
+    set: (
+      items: {
+        [key: string]: any;
+      },
+      callback?: (() => void) | undefined
+    ) => void;
   };
 }
