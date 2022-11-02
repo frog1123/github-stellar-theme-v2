@@ -137,7 +137,7 @@ const restoreOptions = () => {
   chrome.storage.sync.get(
     {
       // stellar settings start
-      stellarSettingEnableLogs: false,
+      stellarSettingEnableLogs: 'false',
       // stellar settings start
       colorCanvasDefault: '#0c0c0c',
       colorHeaderBg: '#111111',

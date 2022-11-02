@@ -7,7 +7,7 @@ console.log(
 
 const properties = {
   // stellar settings start
-  stellarSettingEnableLogs: false,
+  stellarSettingEnableLogs: 'false',
   // stellar settings start
   colorCanvasDefault: '#0c0c0c',
   colorHeaderBg: '#111111',
@@ -57,18 +57,7 @@ const properties = {
   stellarInjectedTopicTagTransitionDuration: '250ms'
 };
 
-const newGet: (
-  keys:
-    | string
-    | string[]
-    | {
-        [key: string]: any;
-      }
-    | null,
-  callback: (items: typeof properties) => void
-) => void = chrome.storage.sync.get;
-
-newGet(properties, items => {
+chrome.storage.sync.get<typeof properties>(properties, items => {
   const injectedSheet = `
     :root {
       --color-canvas-default: ${items.colorCanvasDefault} !important;
@@ -120,5 +109,5 @@ newGet(properties, items => {
 
   const sheet = document.styleSheets[0];
   sheet.insertRule(injectedSheet);
-  if (items.stellarSettingEnableLogs === true) console.table(properties);
+  if (items.stellarSettingEnableLogs === 'true') console.table(properties);
 });
