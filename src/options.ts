@@ -65,7 +65,9 @@ const stellarVarArray: varArrayType[] = [
   { property: 'stellar-injected-color-checkbox-active', savedName: 'stellarInjectedColorCheckboxActive' },
   { property: 'stellar-injected-color-checkbox-focus', savedName: 'stellarInjectedColorCheckboxFocus' },
   { property: 'stellar-injected-color-radio-focus', savedName: 'stellarInjectedColorRadioFocus' },
-  { property: 'stellar-injected-topic-tag-transition-duration', savedName: 'stellarInjectedTopicTagTransitionDuration' }
+  { property: 'stellar-injected-topic-tag-transition-duration', savedName: 'stellarInjectedTopicTagTransitionDuration' },
+  { property: 'stellar-injected-extra-variables', savedName: 'stellarInjectedExtraVariables', inputType: 'large' },
+  { property: 'stellar-injected-extra-rules', savedName: 'stellarInjectedExtraRules', inputType: 'large' }
 ];
 
 window.onload = () => {
@@ -184,7 +186,9 @@ const restoreOptions = () => {
       stellarInjectedColorCheckboxActive: '#ffffff',
       stellarInjectedColorCheckboxFocus: '#9335f2',
       stellarInjectedColorRadioFocus: '#9335f2',
-      stellarInjectedTopicTagTransitionDuration: '250ms'
+      stellarInjectedTopicTagTransitionDuration: '250ms',
+      stellarInjectedExtraVariables: `:root {\n  --example-var: black !important;\n}`,
+      stellarInjectedExtraRules: `.rule {\n background-color: black !important;\n}`
     },
     items => {
       const setPlaceHolder = (id: string, val: string) => {

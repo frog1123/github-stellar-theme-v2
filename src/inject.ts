@@ -54,7 +54,9 @@ const properties = {
   stellarInjectedColorCheckboxActive: '#ffffff',
   stellarInjectedColorCheckboxFocus: '#9335f2',
   stellarInjectedColorRadioFocus: '#9335f2',
-  stellarInjectedTopicTagTransitionDuration: '250ms'
+  stellarInjectedTopicTagTransitionDuration: '250ms',
+  stellarInjectedExtraVariables: `:root {\n  --example-var: black !important;\n}`,
+  stellarInjectedExtraRules: `.rule {\n  background-color: black !important;\n}`
 };
 
 chrome.storage.sync.get<typeof properties>(properties, items => {
@@ -110,4 +112,12 @@ chrome.storage.sync.get<typeof properties>(properties, items => {
   const sheet = document.styleSheets[0];
   sheet.insertRule(injectedSheet);
   if (items.stellarSettingEnableLogs === 'true') console.table(properties);
+
+  sheet.insertRule(items.stellarInjectedExtraVariables);
+  if (items.stellarSettingEnableLogs === 'true') console.log(items.stellarInjectedExtraVariables);
+
+  const styleSheet = document.createElement('style');
+  styleSheet.innerText = items.stellarInjectedExtraRules;
+  document.head.appendChild(styleSheet);
+  if (items.stellarSettingEnableLogs === 'true') console.log(items.stellarInjectedExtraRules);
 });

@@ -146,8 +146,8 @@ p {
 
   & textarea {
     width: 100%;
-    height: 28px;
     border-radius: 6px;
+    height: 29px;
     border: none;
     outline: none;
     color: #fff;
@@ -160,6 +160,7 @@ p {
     font-family: 'Roboto', sans-serif;
     cursor: url('./crosshair.svg'), default !important;
     user-select: none;
+    white-space: pre-wrap;
 
     &::-webkit-scrollbar {
       display: none;
