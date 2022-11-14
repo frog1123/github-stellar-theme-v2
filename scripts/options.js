@@ -5,7 +5,7 @@ const chalk = require('chalk');
 const options = readFileSync(join(__dirname, '..', 'src', 'options.html'));
 
 try {
-  writeFileSync(join(__dirname, '..', 'dist', 'options.html'), options);
+  writeFileSync(join(__dirname, '..', destination, 'options.html'), options);
   console.log(`${chalk.green('✔')} created options`);
 } catch (err) {
   console.log(err);

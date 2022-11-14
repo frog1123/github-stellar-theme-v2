@@ -55,6 +55,9 @@ const properties = {
   stellarInjectedColorCheckboxFocus: '#9335f2',
   stellarInjectedColorRadioFocus: '#9335f2',
   stellarInjectedTopicTagTransitionDuration: '250ms',
+  stellarInjectedActivityOverviewFill: '#aa74e0',
+  stellarInjectedActivityOverviewStroke: '#aa74e0',
+  stellarInjectedEnableFiraCode: 'true',
   stellarInjectedExtraVariables: `:root {\n  --example-var: black !important;\n}`,
   stellarInjectedExtraRules: `.rule {\n  background-color: black !important;\n}`
 };
@@ -107,6 +110,8 @@ chrome.storage.sync.get<typeof properties>(properties, items => {
       --stellar-injected-color-checkbox-focus: ${items.stellarInjectedColorCheckboxFocus} !important;
       --stellar-injected-color-radio-focus: ${items.stellarInjectedColorRadioFocus} !important;
       --stellar-injected-topic-tag-transition-duration: ${items.stellarInjectedTopicTagTransitionDuration} !important;
+      --stellar-injected-activity-overview-fill: ${items.stellarInjectedActivityOverviewFill} !important;
+      --stellar-injected-activity-overview-stroke: ${items.stellarInjectedActivityOverviewStroke} !important;
     }`;
 
   const sheet = document.styleSheets[0];
@@ -116,8 +121,16 @@ chrome.storage.sync.get<typeof properties>(properties, items => {
   sheet.insertRule(items.stellarInjectedExtraVariables);
   if (items.stellarSettingEnableLogs === 'true') console.log(items.stellarInjectedExtraVariables);
 
+  const fontSheet = document.createElement('style');
+  fontSheet.innerText = `
+  .blob-code-inner {
+    font-family: 'Fira Code', monospace !important;
+  }`;
+  if (items.stellarInjectedEnableFiraCode === 'true') document.head.appendChild(fontSheet);
+
   const styleSheet = document.createElement('style');
   styleSheet.innerText = items.stellarInjectedExtraRules;
   document.head.appendChild(styleSheet);
+
   if (items.stellarSettingEnableLogs === 'true') console.log(items.stellarInjectedExtraRules);
 });

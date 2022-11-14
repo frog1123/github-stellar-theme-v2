@@ -66,6 +66,9 @@ const stellarVarArray: varArrayType[] = [
   { property: 'stellar-injected-color-checkbox-focus', savedName: 'stellarInjectedColorCheckboxFocus' },
   { property: 'stellar-injected-color-radio-focus', savedName: 'stellarInjectedColorRadioFocus' },
   { property: 'stellar-injected-topic-tag-transition-duration', savedName: 'stellarInjectedTopicTagTransitionDuration' },
+  { property: 'stellar-injected-enable-fira-code', savedName: 'stellarInjectedEnableFiraCode' },
+  { property: 'stellar-injected-activity-overview-fill', savedName: 'stellarInjectedActivityOverviewFill' },
+  { property: 'stellar-injected-activity-overview-stroke', savedName: 'stellarInjectedActivityOverviewStroke' },
   { property: 'stellar-injected-extra-variables', savedName: 'stellarInjectedExtraVariables', inputType: 'large' },
   { property: 'stellar-injected-extra-rules', savedName: 'stellarInjectedExtraRules', inputType: 'large' }
 ];
@@ -187,8 +190,11 @@ const restoreOptions = () => {
       stellarInjectedColorCheckboxFocus: '#9335f2',
       stellarInjectedColorRadioFocus: '#9335f2',
       stellarInjectedTopicTagTransitionDuration: '250ms',
+      stellarInjectedActivityOverviewFill: '#aa74e0',
+      stellarInjectedActivityOverviewStroke: '#aa74e0',
+      stellarInjectedEnableFiraCode: 'true',
       stellarInjectedExtraVariables: `:root {\n  --example-var: black !important;\n}`,
-      stellarInjectedExtraRules: `.rule {\n background-color: black !important;\n}`
+      stellarInjectedExtraRules: `.rule {\n  background-color: black !important;\n}`
     },
     items => {
       const setPlaceHolder = (id: string, val: string) => {

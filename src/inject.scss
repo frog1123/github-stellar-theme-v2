@@ -63,9 +63,15 @@ input[type='radio'] {
 }
 
 .markdown-body .highlight pre,
-.markdown-body pre {
+.markdown-body pre,
+#repo-content-pjax-container > div > div > div > div {
   &::-webkit-scrollbar {
     // display: none;
     height: 8px !important;
   }
+}
+
+#user-activity-overview > div > div.d-flex.flex-column.flex-lg-row > div.pl-lg-3.col-6.border-lg-left > div > svg.js-activity-overview-graph.mx-auto.d-block > g > path {
+  fill: var(--stellar-injected-activity-overview-fill) !important;
+  stroke: var(--stellar-injected-activity-overview-stroke) !important;
 }

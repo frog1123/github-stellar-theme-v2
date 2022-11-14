@@ -1,3 +1,4 @@
 dist
+final
 node_modules
 *.env
