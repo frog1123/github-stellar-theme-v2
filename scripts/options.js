@@ -2,6 +2,8 @@ const { readFileSync, writeFileSync } = require('fs');
 const { join } = require('path');
 const chalk = require('chalk');
 
+const destination = process.argv[2].replace(/--destination=/, '');
+
 const options = readFileSync(join(__dirname, '..', 'src', 'options.html'));
 
 try {
