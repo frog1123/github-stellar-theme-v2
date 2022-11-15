@@ -27,7 +27,7 @@ const createManifest = async ({ contentScripts, version }) => {
   }
 };
 
-createManifest({ contentScripts, version: '1.0.1' });
+createManifest({ contentScripts, version: '1.0.2' });
 
 // {
 //   "manifest_version": 3,
