@@ -12,11 +12,15 @@ const contentScripts = [
   }
 ];
 
-const createManifest = async ({ contentScripts, version }) => {
+const permissions = ['storage'];
+
+const createManifest = async ({ contentScripts, permissions, version }) => {
   try {
     writeFileSync(
       join(__dirname, '..', destination, 'manifest.json'),
-      `{"manifest_version":3,"version":\"${version}\","name":"github stellar theme","author":"frog1123","description":"stellar theme for github","permissions":["contextMenus","activeTab","scripting","storage"],"content_scripts":${JSON.stringify(
+      `{"manifest_version":3,"version":\"${version}\","name":"github stellar theme","author":"frog1123","description":"stellar theme for github","permissions":${JSON.stringify(
+        permissions
+      )},"content_scripts":${JSON.stringify(
         contentScripts
       )},"icons":{"16":"16.png","32":"32.png","48":"48.png","64":"64.png","128":"128.png"},"action":{"default_icon":{"16":"16.png","32":"32.png","48":"48.png","64":"64.png","128":"128.png"},"default_title":"github stellar theme","default_popup":"popup.html"},"options_page": "options.html"}`
     );
@@ -27,7 +31,7 @@ const createManifest = async ({ contentScripts, version }) => {
   }
 };
 
-createManifest({ contentScripts, version: '1.0.2' });
+createManifest({ contentScripts, permissions, version: '1.0.2' });
 
 // {
 //   "manifest_version": 3,
