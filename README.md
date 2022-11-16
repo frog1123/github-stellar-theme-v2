@@ -3,6 +3,8 @@
   <h1>stellar theme for github</h1>
 </div>
 
+install here -> https://chrome.google.com/webstore/detail/github-stellar-theme/chkkhpmjibgmacpgidnmmdolkdbfheha
+
 recommend using with github 'Dark dimmed' (settings > appearance > theme)
 
 tested on
