@@ -5,7 +5,9 @@
 
 install here -> https://chrome.google.com/webstore/detail/github-stellar-theme/chkkhpmjibgmacpgidnmmdolkdbfheha
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/N9W5yEa56HA/0.jpg)](https://www.youtube.com/watch?v=N9W5yEa56HA)
+<div align="center">
+  [![youtube video](https://img.youtube.com/vi/N9W5yEa56HA/0.jpg)](https://www.youtube.com/watch?v=N9W5yEa56HA)
+</div>
 
 recommend using with github 'Dark dimmed' (settings > appearance > theme)
 
