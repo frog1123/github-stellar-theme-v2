@@ -6,9 +6,6 @@ console.log(
 );
 
 const properties = {
-  // stellar settings start
-  stellarSettingEnableLogs: 'false',
-  // stellar settings start
   colorCanvasDefault: '#0c0c0c',
   colorHeaderBg: '#111111',
   colorAccentFg: '#9335f2',
@@ -69,6 +66,7 @@ const properties = {
   colorShadowExtraLarge: '0 12px 48px #191919',
   colorDiffstatAdditionBg: '#51bfc1',
   // stellar custom
+  stellarSettingEnableLogs: false,
   stellarInjectedColorSelection: '#9335f2',
   stellarInjectedColorLoadingBar: '#9335f2',
   stellarInjectedColorScrollbarTrack: '#0f0f0e',
@@ -82,12 +80,12 @@ const properties = {
   stellarInjectedTopicTagTransitionDuration: '250ms',
   stellarInjectedActivityOverviewFill: '#aa74e0',
   stellarInjectedActivityOverviewStroke: '#aa74e0',
-  stellarInjectedEnableFiraCode: 'true',
+  stellarInjectedEnableFiraCode: false,
   stellarInjectedExtraVariables: `:root {\n  --example-var: black !important;\n}`,
   stellarInjectedExtraRules: `.rule {\n  background-color: black !important;\n}`
 };
 
-chrome.storage.sync.get<typeof properties>(properties, items => {
+chrome.storage.sync.get<typeof properties>(properties, async items => {
   const injectedSheet = `
     :root {
       --color-canvas-default: ${items.colorCanvasDefault} !important;
@@ -196,21 +194,22 @@ chrome.storage.sync.get<typeof properties>(properties, items => {
 
   const sheet = document.styleSheets[0];
   sheet.insertRule(injectedSheet);
-  if (items.stellarSettingEnableLogs === 'true') console.table(properties);
+
+  if (items.stellarSettingEnableLogs === true) console.table(items);
 
   sheet.insertRule(items.stellarInjectedExtraVariables);
-  if (items.stellarSettingEnableLogs === 'true') console.log(items.stellarInjectedExtraVariables);
+  if (items.stellarSettingEnableLogs === true) console.log(items.stellarInjectedExtraVariables);
 
   const fontSheet = document.createElement('style');
   fontSheet.innerText = `
   .blob-code-inner, .CodeMirror-lines {
     font-family: 'Fira Code', monospace !important;
   }`;
-  if (items.stellarInjectedEnableFiraCode === 'true') document.head.appendChild(fontSheet);
+  if (items.stellarInjectedEnableFiraCode === true) document.head.appendChild(fontSheet);
 
   const styleSheet = document.createElement('style');
   styleSheet.innerText = items.stellarInjectedExtraRules;
   document.head.appendChild(styleSheet);
 
-  if (items.stellarSettingEnableLogs === 'true') console.log(items.stellarInjectedExtraRules);
+  if (items.stellarSettingEnableLogs === true) console.log(items.stellarInjectedExtraRules);
 });

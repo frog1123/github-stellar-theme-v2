@@ -1,4 +1,15 @@
-const saveOption = (id: string, savedName: string) => {
+const saveOption = (id: string, savedName: string, inputType?: 'large' | 'toggle') => {
+  if (inputType === 'toggle') {
+    const val = (document!.getElementById(id) as any).checked;
+    const itemToSave = {} as any;
+    itemToSave[savedName] = val;
+    chrome.storage.sync.set(itemToSave, () => {});
+    chrome.storage.sync.get(_properties, items => {
+      console.log(items);
+    });
+    return;
+  }
+
   const val = (document!.getElementById(id) as any).value;
   if (val === '') return;
 
@@ -10,11 +21,14 @@ const saveOption = (id: string, savedName: string) => {
 
 // { property: 'property', savedName: 'savedName' },
 
-interface varArrayType {
+interface varArrayBasic {
   property: string;
   savedName: string;
-  inputType?: 'large';
+  inputType?: 'large' | 'toggle';
+  subtext?: string;
 }
+
+type varArrayType = varArrayBasic;
 
 const varArray: varArrayType[] = [
   { property: 'color-canvas-default', savedName: 'colorCanvasDefault' },
@@ -67,7 +81,7 @@ const varArray: varArrayType[] = [
   { property: 'color-success-fg', savedName: 'colorSuccessFg' },
   { property: 'color-success-emphasis', savedName: 'colorSuccessEmphasis' },
   { property: 'color-btn-primary-bg', savedName: 'colorBtnPrimaryBg' },
-  { property: 'color-btn-primary-hover-bg', savedName: 'colorBtnPrimaryHoverBg' }, // change later
+  { property: 'color-btn-primary-hover-bg', savedName: 'colorBtnPrimaryHoverBg' },
   { property: 'color-btn-primary-selected-bg', savedName: 'colorBtnPrimarySelectedBg' },
   { property: 'color-btn-primary-disabled-bg', savedName: 'colorBtnPrimaryDisabledBg' },
   { property: 'color-scale-yellow-2', savedName: 'colorScaleYellow2' },
@@ -79,7 +93,7 @@ const varArray: varArrayType[] = [
 ];
 
 const stellarVarArray: varArrayType[] = [
-  { property: 'stellar-settings-enable-logs', savedName: 'stellarSettingEnableLogs' },
+  { property: 'stellar-settings-enable-logs', savedName: 'stellarSettingEnableLogs', inputType: 'toggle', subtext: 'enable debug info in console' },
   { property: 'stellar-injected-color-selection', savedName: 'stellarInjectedColorSelection' },
   { property: 'stellar-injected-color-loading-bar', savedName: 'stellarInjectedColorLoadingBar' },
   { property: 'stellar-injected-color-scrollbar-track', savedName: 'stellarInjectedColorScrollbarTrack' },
@@ -91,7 +105,7 @@ const stellarVarArray: varArrayType[] = [
   { property: 'stellar-injected-color-checkbox-focus', savedName: 'stellarInjectedColorCheckboxFocus' },
   { property: 'stellar-injected-color-radio-focus', savedName: 'stellarInjectedColorRadioFocus' },
   { property: 'stellar-injected-topic-tag-transition-duration', savedName: 'stellarInjectedTopicTagTransitionDuration' },
-  { property: 'stellar-injected-enable-fira-code', savedName: 'stellarInjectedEnableFiraCode' },
+  { property: 'stellar-injected-enable-fira-code', savedName: 'stellarInjectedEnableFiraCode', inputType: 'toggle', subtext: 'change the font when browsing code' },
   { property: 'stellar-injected-activity-overview-fill', savedName: 'stellarInjectedActivityOverviewFill' },
   { property: 'stellar-injected-activity-overview-stroke', savedName: 'stellarInjectedActivityOverviewStroke' },
   { property: 'stellar-injected-extra-variables', savedName: 'stellarInjectedExtraVariables', inputType: 'large' },
@@ -115,6 +129,79 @@ window.onload = () => {
         node.appendChild(p);
         node.appendChild(textarea);
         (document.getElementById(container) as any).appendChild(node);
+        return;
+      }
+
+      if (obj.inputType === 'toggle') {
+        const node = document.createElement('div');
+        const nodeClass = document.createAttribute('class');
+        nodeClass.value = 'input-container-toggle';
+        node.setAttributeNode(nodeClass);
+
+        const textContainer = document.createElement('div');
+        const textContainerClass = document.createAttribute('class');
+        textContainerClass.value = 'input-container-toggle-text-container';
+        textContainer.setAttributeNode(textContainerClass);
+
+        const p = document.createElement('p');
+        p.textContent = obj.property;
+        const subtext = document.createElement('p');
+        (subtext as any).textContent = obj.subtext;
+        const subtextClass = document.createAttribute('class');
+        subtextClass.value = 'input-container-toggle-subtext';
+        subtext.setAttributeNode(subtextClass);
+
+        textContainer.appendChild(p);
+        textContainer.appendChild(subtext);
+
+        const switchContainer = document.createElement('div');
+        const switchContainerClass = document.createAttribute('class');
+        switchContainerClass.value = 'input-container-toggle-switch';
+        switchContainer.setAttributeNode(switchContainerClass);
+
+        const input = document.createElement('input');
+        const inputType = document.createAttribute('type');
+        inputType.value = 'checkbox';
+        const inputId = document.createAttribute('id');
+        inputId.value = obj.property;
+        input.setAttributeNode(inputType);
+        input.setAttributeNode(inputId);
+
+        const label = document.createElement('label');
+        const labelFor = document.createAttribute('for');
+        labelFor.value = obj.property;
+        label.setAttributeNode(labelFor);
+
+        switchContainer.appendChild(input);
+        switchContainer.append(label);
+
+        const itemObj = {} as any;
+        itemObj[obj.savedName] = '';
+
+        chrome.storage.sync.get(itemObj, items => {
+          if (items[obj.savedName] === true) input.checked = true;
+        });
+        input.onclick = () => {
+          chrome.storage.sync.get(itemObj, items => {
+            const itemToSave = {} as any;
+
+            if (items[obj.savedName] === true) {
+              itemToSave[obj.savedName] = false;
+              console.log(itemToSave[obj.savedName]);
+              return;
+            }
+            if (items[obj.savedName] === false) {
+              itemToSave[obj.savedName] = true;
+              console.log(itemToSave[obj.savedName]);
+              return;
+            }
+          });
+        };
+
+        node.appendChild(textContainer);
+        node.appendChild(switchContainer);
+        (document.getElementById(container) as any).appendChild(node);
+
         return;
       }
 
@@ -153,19 +240,16 @@ window.onload = () => {
 // saves options to chrome.storage
 const saveOptions = async () => {
   varArray.forEach(obj => {
-    saveOption(obj.property, obj.savedName);
+    saveOption(obj.property, obj.savedName, obj.inputType);
   });
   stellarVarArray.forEach(obj => {
-    saveOption(obj.property, obj.savedName);
+    saveOption(obj.property, obj.savedName, obj.inputType);
   });
 
   alert('options saved');
 };
 
 const _properties = {
-  // stellar settings start
-  stellarSettingEnableLogs: 'false',
-  // stellar settings start
   colorCanvasDefault: '#0c0c0c',
   colorHeaderBg: '#111111',
   colorAccentFg: '#9335f2',
@@ -226,6 +310,7 @@ const _properties = {
   colorShadowExtraLarge: '0 12px 48px #191919',
   colorDiffstatAdditionBg: '#51bfc1',
   // stellar custom
+  stellarSettingEnableLogs: false,
   stellarInjectedColorSelection: '#9335f2',
   stellarInjectedColorLoadingBar: '#9335f2',
   stellarInjectedColorScrollbarTrack: '#0f0f0e',
@@ -239,7 +324,7 @@ const _properties = {
   stellarInjectedTopicTagTransitionDuration: '250ms',
   stellarInjectedActivityOverviewFill: '#aa74e0',
   stellarInjectedActivityOverviewStroke: '#aa74e0',
-  stellarInjectedEnableFiraCode: 'true',
+  stellarInjectedEnableFiraCode: true,
   stellarInjectedExtraVariables: `:root {\n  --example-var: black !important;\n}`,
   stellarInjectedExtraRules: `.rule {\n  background-color: black !important;\n}`
 };
@@ -276,18 +361,3 @@ document!.getElementById('save')!.addEventListener('click', () => {
     clearAllInputValues();
   });
 });
-
-(document.getElementById('switch') as any).onclick = () => {
-  chrome.storage.sync.get({ stellarInjectedEnableFiraCode: 'true' }, items => {
-    const itemToSave = {} as any;
-
-    if (items['stellarInjectedEnableFiraCode'] === 'true') {
-      itemToSave['stellarInjectedEnableFiraCode'] = 'false';
-      chrome.storage.sync.set(itemToSave, () => {});
-    } else {
-      itemToSave['stellarInjectedEnableFiraCode'] = 'true';
-      chrome.storage.sync.set(itemToSave, () => {});
-    }
-    console.log(itemToSave['stellarInjectedEnableFiraCode']);
-  });
-};
