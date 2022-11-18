@@ -4,9 +4,7 @@ const saveOption = (id: string, savedName: string, inputType?: 'large' | 'toggle
     const itemToSave = {} as any;
     itemToSave[savedName] = val;
     chrome.storage.sync.set(itemToSave, () => {});
-    chrome.storage.sync.get(_properties, items => {
-      console.log(items);
-    });
+    chrome.storage.sync.get(_properties, () => {});
     return;
   }
 
@@ -25,10 +23,18 @@ interface varArrayBasic {
   property: string;
   savedName: string;
   inputType?: 'large' | 'toggle';
-  subtext?: string;
 }
 
-type varArrayType = varArrayBasic;
+interface varArrayLarge extends varArrayBasic {
+  inputType: 'large';
+}
+
+interface varArrayToggle extends varArrayBasic {
+  inputType: 'toggle';
+  subtext: string;
+}
+
+type varArrayType = varArrayBasic | varArrayLarge | varArrayToggle;
 
 const varArray: varArrayType[] = [
   { property: 'color-canvas-default', savedName: 'colorCanvasDefault' },
@@ -89,7 +95,12 @@ const varArray: varArrayType[] = [
   { property: 'color-shadow-medium', savedName: 'colorShadowMedium', inputType: 'large' },
   { property: 'color-shadow-large', savedName: 'colorShadowLarge', inputType: 'large' },
   { property: 'color-shadow-extra-large', savedName: 'colorShadowExtraLarge', inputType: 'large' },
-  { property: 'color-diffstat-addition-bg', savedName: 'colorDiffstatAdditionBg' }
+  { property: 'color-diffstat-addition-bg', savedName: 'colorDiffstatAdditionBg' },
+  { property: 'color-primer-shadow-highlight', savedName: 'colorPrimerShadowHighlight' },
+  { property: 'color-primer-shadow-inset', savedName: 'colorPrimerShadowInset' },
+  { property: 'color-action-list-item-default-selected-bg', savedName: 'colorActionListItemDefaultSelectedBg' },
+  { property: 'color-action-list-item-inline-divider', savedName: 'colorActionListItemInlineDivider' },
+  { property: 'color-scheme-dark', savedName: 'colorSchemeDark', inputType: 'toggle', subtext: 'enable dark mode' }
 ];
 
 const stellarVarArray: varArrayType[] = [
@@ -146,7 +157,7 @@ window.onload = () => {
         const p = document.createElement('p');
         p.textContent = obj.property;
         const subtext = document.createElement('p');
-        (subtext as any).textContent = obj.subtext;
+        (subtext as any).textContent = (obj as varArrayToggle).subtext;
         const subtextClass = document.createAttribute('class');
         subtextClass.value = 'input-container-toggle-subtext';
         subtext.setAttributeNode(subtextClass);
@@ -309,6 +320,12 @@ const _properties = {
   colorShadowLarge: '0 8px 24px #191919',
   colorShadowExtraLarge: '0 12px 48px #191919',
   colorDiffstatAdditionBg: '#51bfc1',
+  colorPrimerShadowHighlight: '0 0 transparent',
+  colorPrimerShadowInset: '0 0 transparent',
+  colorActionListItemDefaultSelectedBg: 'rgba(144,157,171,0.08)',
+  colorActionListItemInlineDivider: 'rgba(68,76,86,0.48)',
+  colorSchemeDark: true,
+
   // stellar custom
   stellarSettingEnableLogs: false,
   stellarInjectedColorSelection: '#9335f2',
@@ -324,7 +341,7 @@ const _properties = {
   stellarInjectedTopicTagTransitionDuration: '250ms',
   stellarInjectedActivityOverviewFill: '#aa74e0',
   stellarInjectedActivityOverviewStroke: '#aa74e0',
-  stellarInjectedEnableFiraCode: true,
+  stellarInjectedEnableFiraCode: false,
   stellarInjectedExtraVariables: `:root {\n  --example-var: black !important;\n}`,
   stellarInjectedExtraRules: `.rule {\n  background-color: black !important;\n}`
 };

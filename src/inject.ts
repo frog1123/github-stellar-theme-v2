@@ -65,6 +65,12 @@ const properties = {
   colorShadowLarge: '0 8px 24px #191919',
   colorShadowExtraLarge: '0 12px 48px #191919',
   colorDiffstatAdditionBg: '#51bfc1',
+  colorPrimerShadowHighlight: '0 0 transparent',
+  colorPrimerShadowInset: '0 0 transparent',
+  colorActionListItemDefaultSelectedBg: 'rgba(144,157,171,0.08)',
+  colorActionListItemInlineDivider: 'rgba(68,76,86,0.48)',
+  colorSchemeDark: true,
+
   // stellar custom
   stellarSettingEnableLogs: false,
   stellarInjectedColorSelection: '#9335f2',
@@ -147,6 +153,11 @@ chrome.storage.sync.get<typeof properties>(properties, async items => {
       --color-shadow-large: ${items.colorShadowLarge} !important;
       --color-shadow-extra-large: ${items.colorShadowExtraLarge} !important;
       --color-diffstat-addition-bg: ${items.colorDiffstatAdditionBg} !important;
+      --color-primer-shadow-highlight: ${items.colorPrimerShadowHighlight} !important;
+      --color-primer-shadow-inset: ${items.colorPrimerShadowInset} !important;
+      --color-action-list-item-default-selected-bg: ${items.colorActionListItemDefaultSelectedBg} !important;
+      --color-action-list-item-inline-divider: ${items.colorActionListItemInlineDivider} !important;
+
       --stellar-injected-color-selection: ${items.stellarInjectedColorSelection} !important;
       --stellar-injected-color-loading-bar: ${items.stellarInjectedColorLoadingBar} !important;
       --stellar-injected-color-scrollbar-track: ${items.stellarInjectedColorScrollbarTrack} !important;
@@ -160,7 +171,7 @@ chrome.storage.sync.get<typeof properties>(properties, async items => {
       --stellar-injected-topic-tag-transition-duration: ${items.stellarInjectedTopicTagTransitionDuration} !important;
       --stellar-injected-activity-overview-fill: ${items.stellarInjectedActivityOverviewFill} !important;
       --stellar-injected-activity-overview-stroke: ${items.stellarInjectedActivityOverviewStroke} !important;
-      
+
       --color-prettylights-syntax-comment: #768390 !important;
       --color-prettylights-syntax-constant: #6cb6ff !important;
       --color-prettylights-syntax-entity: #dcbdfb !important;
@@ -206,6 +217,13 @@ chrome.storage.sync.get<typeof properties>(properties, async items => {
     font-family: 'Fira Code', monospace !important;
   }`;
   if (items.stellarInjectedEnableFiraCode === true) document.head.appendChild(fontSheet);
+
+  const colorScheme = document.createElement('style');
+  colorScheme.innerText = `
+  :root {
+    color-scheme: dark !important;
+  }`;
+  if (items.colorSchemeDark === true) document.head.appendChild(colorScheme);
 
   const styleSheet = document.createElement('style');
   styleSheet.innerText = items.stellarInjectedExtraRules;
