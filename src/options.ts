@@ -96,10 +96,10 @@ const varArray: varArrayType[] = [
   { property: 'color-shadow-large', savedName: 'colorShadowLarge', inputType: 'large' },
   { property: 'color-shadow-extra-large', savedName: 'colorShadowExtraLarge', inputType: 'large' },
   { property: 'color-diffstat-addition-bg', savedName: 'colorDiffstatAdditionBg' },
-  { property: 'color-primer-shadow-highlight', savedName: 'colorPrimerShadowHighlight' },
-  { property: 'color-primer-shadow-inset', savedName: 'colorPrimerShadowInset' },
-  { property: 'color-action-list-item-default-selected-bg', savedName: 'colorActionListItemDefaultSelectedBg' },
-  { property: 'color-action-list-item-inline-divider', savedName: 'colorActionListItemInlineDivider' },
+  { property: 'color-primer-shadow-highlight', savedName: 'colorPrimerShadowHighlight', inputType: 'large' },
+  { property: 'color-primer-shadow-inset', savedName: 'colorPrimerShadowInset', inputType: 'large' },
+  { property: 'color-action-list-item-default-selected-bg', savedName: 'colorActionListItemDefaultSelectedBg', inputType: 'large' },
+  { property: 'color-action-list-item-inline-divider', savedName: 'colorActionListItemInlineDivider', inputType: 'large' },
   { property: 'color-scheme-dark', savedName: 'colorSchemeDark', inputType: 'toggle', subtext: 'enable dark mode' }
 ];
 
