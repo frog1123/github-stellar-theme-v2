@@ -198,12 +198,10 @@ window.onload = () => {
 
             if (items[obj.savedName] === true) {
               itemToSave[obj.savedName] = false;
-              console.log(itemToSave[obj.savedName]);
               return;
             }
             if (items[obj.savedName] === false) {
               itemToSave[obj.savedName] = true;
-              console.log(itemToSave[obj.savedName]);
               return;
             }
           });
@@ -346,13 +344,21 @@ const _properties = {
   stellarInjectedExtraRules: `.rule {\n  background-color: black !important;\n}`
 };
 
+const setPlaceHolder = (id: string, val: string) => {
+  (document.getElementById(id) as any).placeholder = val;
+};
+
+const setValue = (id: string, val: string) => {
+  if (typeof val === 'boolean') {
+    (document.getElementById(id) as any).checked = val;
+  }
+
+  (document.getElementById(id) as any).value = val;
+};
+
 // restores previous settings
 const restoreOptions = () => {
   chrome.storage.sync.get(_properties, items => {
-    const setPlaceHolder = (id: string, val: string) => {
-      (document.getElementById(id) as any).placeholder = val;
-    };
-
     varArray.forEach(obj => {
       setPlaceHolder(obj.property, items[obj.savedName]);
     });
@@ -378,3 +384,50 @@ document!.getElementById('save')!.addEventListener('click', () => {
     clearAllInputValues();
   });
 });
+
+interface Save {
+  debug: { version: string };
+  content: any[];
+}
+
+(document.getElementById('export') as any).onclick = () => {
+  let dataToExport: Save = { debug: { version: '1.0.3' }, content: [] };
+  const addProperty = (obj: varArrayType) => {
+    if (obj.inputType === 'toggle') {
+      const val = (document.getElementById(obj.property) as any).checked;
+      dataToExport.content[dataToExport.content.length] = { property: obj.property, value: val };
+      return;
+    }
+    let val = (document.getElementById(obj.property) as any).value;
+    if (val === '') val = (document.getElementById(obj.property) as any).placeholder;
+
+    dataToExport.content[dataToExport.content.length] = { property: obj.property, value: val };
+  };
+
+  varArray.forEach(obj => {
+    addProperty(obj);
+  });
+
+  // stellar custom
+  stellarVarArray.forEach(obj => {
+    addProperty(obj);
+  });
+
+  navigator.clipboard.writeText(btoa(JSON.stringify(dataToExport)));
+  alert('save copied to clipboard');
+};
+
+(document.getElementById('import') as any).onclick = () => {
+  const preDataToImport = prompt('input your save (this will overwrite your current save)');
+  if (preDataToImport === null) {
+    alert('invalid save');
+    return;
+  }
+
+  const dataToImport: Save = JSON.parse(atob(preDataToImport));
+  if (dataToImport === null) alert('invalid save');
+
+  dataToImport.content.forEach(obj => {
+    setValue(obj.property, obj.value);
+  });
+};

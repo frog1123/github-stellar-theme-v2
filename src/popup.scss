@@ -41,21 +41,28 @@ body {
   color: #fff;
 }
 
-button {
-  background-color: #9335f2;
-  transition-duration: 250ms;
-  border-radius: 20px;
+#options-btn {
+  margin-top: 10px;
+  color: #fff;
+  font-size: 24px;
   border: none;
+  width: max-content;
+  height: max-content;
+  border-radius: 10px;
+  background-image: linear-gradient(45deg, #9335f2 0%, #aa74e0 100%);
+  background-image: -webkit-linear-gradient(45deg, #9335f2 0%, #aa74e0 100%);
+  background-image: -moz-linear-gradient(45deg, #9335f2 0%, #aa74e0 100%);
+  transition-duration: 250ms;
+  padding: 6px;
   cursor: pointer;
 
-  & h1 {
-    color: #fff;
+  & p {
     font-size: 24px;
     margin: 0;
   }
 
   &:hover {
-    background-color: #aa74e0;
+    transform: translateY(-6px);
   }
 }
 

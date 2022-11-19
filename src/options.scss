@@ -168,23 +168,39 @@ p {
   }
 }
 
-#save {
+#save,
+#import,
+#export {
   margin-top: 10px;
   color: #fff;
   font-size: 24px;
   border: none;
-  width: 100px;
-  height: 40px;
+  width: max-content;
+  height: max-content;
   border-radius: 10px;
   background-image: linear-gradient(45deg, #9335f2 0%, #aa74e0 100%);
   background-image: -webkit-linear-gradient(45deg, #9335f2 0%, #aa74e0 100%);
   background-image: -moz-linear-gradient(45deg, #9335f2 0%, #aa74e0 100%);
   transition-duration: 250ms;
+  padding: 6px;
   cursor: pointer;
 
-  &:hover {
-    transform: translateY(-10px);
+  & p {
+    font-size: 24px;
+    margin: 0;
   }
+
+  &:hover {
+    transform: translateY(-6px);
+  }
+}
+
+#btns-container {
+  display: grid;
+  width: max-content;
+  margin: auto;
+  grid-gap: 10px;
+  grid-auto-flow: column;
 }
 
 #input-containers-container,
