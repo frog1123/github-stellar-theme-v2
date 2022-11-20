@@ -391,7 +391,7 @@ interface Save {
 }
 
 (document.getElementById('export') as any).onclick = () => {
-  let dataToExport: Save = { debug: { version: '1.0.3' }, content: [] };
+  let dataToExport: Save = { debug: { version: '1.0.4' }, content: [] };
   const addProperty = (obj: varArrayType) => {
     if (obj.inputType === 'toggle') {
       const val = (document.getElementById(obj.property) as any).checked;
