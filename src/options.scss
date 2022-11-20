@@ -169,8 +169,8 @@ p {
 }
 
 #save,
-#import,
-#export {
+#export,
+#import {
   margin-top: 10px;
   color: #fff;
   font-size: 24px;
@@ -178,9 +178,6 @@ p {
   width: max-content;
   height: max-content;
   border-radius: 10px;
-  background-image: linear-gradient(45deg, #9335f2 0%, #aa74e0 100%);
-  background-image: -webkit-linear-gradient(45deg, #9335f2 0%, #aa74e0 100%);
-  background-image: -moz-linear-gradient(45deg, #9335f2 0%, #aa74e0 100%);
   transition-duration: 250ms;
   padding: 6px;
   cursor: pointer;
@@ -193,6 +190,24 @@ p {
   &:hover {
     transform: translateY(-6px);
   }
+}
+
+#save {
+  background-image: linear-gradient(45deg, #9335f2 0%, #aa74e0 100%);
+  background-image: -webkit-linear-gradient(45deg, #9335f2 0%, #aa74e0 100%);
+  background-image: -moz-linear-gradient(45deg, #9335f2 0%, #aa74e0 100%);
+}
+
+#export {
+  background-image: linear-gradient(90deg, #9335f2 0%, #aa74e0 100%);
+  background-image: -webkit-linear-gradient(90deg, #9335f2 0%, #aa74e0 100%);
+  background-image: -moz-linear-gradient(90deg, #9335f2 0%, #aa74e0 100%);
+}
+
+#import {
+  background-image: linear-gradient(135deg, #9335f2 0%, #aa74e0 100%);
+  background-image: -webkit-linear-gradient(135deg, #9335f2 0%, #aa74e0 100%);
+  background-image: -moz-linear-gradient(135deg, #9335f2 0%, #aa74e0 100%);
 }
 
 #btns-container {

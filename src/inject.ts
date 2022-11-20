@@ -1,10 +1,3 @@
-console.log(
-  '%c🪐| stellar theme injected %cv2\n%clogs can be enabled by enabling stellar-settings-enable-logs',
-  'color: #9335f2',
-  'background-color: #aa74e0; color: #ffffff; border-radius: 4px; padding-left: 4px; padding-right: 4px;',
-  ''
-);
-
 const properties = {
   colorCanvasDefault: '#0c0c0c',
   colorHeaderBg: '#111111',
@@ -92,6 +85,21 @@ const properties = {
 };
 
 chrome.storage.sync.get<typeof properties>(properties, async items => {
+  if (!items.stellarSettingEnableLogs)
+    console.log(
+      '%c🪐| stellar theme injected %cv2\n%clogs can be enabled by enabling stellar-settings-enable-logs',
+      'color: #9335f2',
+      'background-color: #aa74e0; color: #ffffff; border-radius: 4px; padding-left: 4px; padding-right: 4px;',
+      ''
+    );
+  else
+    console.log(
+      '%c🪐| stellar theme injected %cv2\n%clogs can be disabled by disabling stellar-settings-enable-logs',
+      'color: #9335f2',
+      'background-color: #aa74e0; color: #ffffff; border-radius: 4px; padding-left: 4px; padding-right: 4px;',
+      ''
+    );
+
   const injectedSheet = `
     :root {
       --color-canvas-default: ${items.colorCanvasDefault} !important;
