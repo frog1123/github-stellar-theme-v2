@@ -237,7 +237,7 @@ p {
 .line {
   height: 2px;
   width: 100%;
-  background-color: gray;
+  background-color: #494949;
   border-radius: 10px;
 }
 
@@ -302,5 +302,44 @@ label:active:after {
 
   & .input-container-toggle-switch {
     padding-bottom: 14px;
+  }
+}
+
+#hotkeys-info {
+  width: 100%;
+  padding: 2px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+  place-items: center;
+}
+
+.hotkey-info {
+  display: grid;
+  width: max-content;
+  grid-template-rows: max-content max-content;
+  grid-gap: 6px;
+  place-items: center;
+
+  & div {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    grid-gap: 6px;
+    place-items: center;
+
+    & img {
+      width: 24px;
+      height: 24px;
+    }
+
+    & p {
+      font-size: 28px;
+      color: #494949;
+    }
+  }
+
+  & p {
+    font-size: 16px;
+    color: #494949;
   }
 }

@@ -395,7 +395,7 @@ interface Save {
   content: any[];
 }
 
-(document.getElementById('export') as any).onclick = () => {
+const exportData = () => {
   let dataToExport: Save = { debug: { version: '1.0.4' }, content: [] };
   const addProperty = (obj: varArrayType) => {
     if (obj.inputType === 'toggle') {
@@ -422,7 +422,7 @@ interface Save {
   alert('save copied to clipboard');
 };
 
-(document.getElementById('import') as any).onclick = () => {
+const importData = () => {
   const preDataToImport = prompt('input your save (this will overwrite your current save)');
   if (preDataToImport === null) {
     alert('invalid save');
@@ -435,4 +435,30 @@ interface Save {
   dataToImport.content.forEach(obj => {
     setValue(obj.property, obj.value);
   });
+};
+
+(document.getElementById('export') as any).onclick = () => exportData();
+(document.getElementById('import') as any).onclick = () => importData();
+
+document.onkeydown = e => {
+  e = e || window.event;
+  e.preventDefault();
+
+  console.log(e.ctrlKey, e.key);
+
+  // u - top
+  // d - bottom
+  // s - save
+  // e - export
+  // i - import
+
+  if (e.ctrlKey && e.key === 'u') window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (e.ctrlKey && e.key === 'd') window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  if (e.ctrlKey && e.key === 's')
+    saveOptions().then(() => {
+      restoreOptions();
+      clearAllInputValues();
+    });
+  if (e.ctrlKey && e.key === 'e') exportData();
+  if (e.ctrlKey && e.key === 'i') importData();
 };
