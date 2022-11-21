@@ -132,6 +132,10 @@ p {
     font-family: 'Roboto', sans-serif;
     cursor: url('./crosshair.svg'), default !important;
     user-select: none;
+
+    &::placeholder {
+      color: #494949;
+    }
   }
 }
 
@@ -161,6 +165,10 @@ p {
     cursor: url('./crosshair.svg'), default !important;
     user-select: none;
     white-space: pre-wrap;
+
+    &::placeholder {
+      color: #494949;
+    }
 
     &::-webkit-scrollbar {
       display: none;

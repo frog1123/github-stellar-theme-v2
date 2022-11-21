@@ -372,8 +372,13 @@ const restoreOptions = () => {
 
 const clearAllInputValues = () => {
   const inputs = document.querySelectorAll('.input-container');
+  const inputsLarge = document.querySelectorAll('.input-container-large');
 
   inputs.forEach(input => {
+    (input.children[1] as any).value = '';
+  });
+
+  inputsLarge.forEach(input => {
     (input.children[1] as any).value = '';
   });
 };
