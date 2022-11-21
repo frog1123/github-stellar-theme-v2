@@ -305,6 +305,12 @@ label:active:after {
   }
 }
 
+#hotkeys-info-container {
+  display: grid;
+  width: 100%;
+  grid-template-rows: max-content max-content;
+}
+
 #hotkeys-info {
   width: 100%;
   padding: 2px;
@@ -340,6 +346,25 @@ label:active:after {
 
   & p {
     font-size: 16px;
+    color: #494949;
+  }
+}
+
+#hotkeys-note {
+  display: grid;
+  grid-auto-flow: column;
+  width: max-content;
+  margin: auto;
+  grid-gap: 4px;
+  place-items: center;
+
+  & img {
+    width: 16px;
+    height: 16px;
+  }
+
+  & p {
+    font-size: 18px;
     color: #494949;
   }
 }

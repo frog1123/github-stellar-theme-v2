@@ -452,13 +452,13 @@ document.onkeydown = e => {
   // e - export
   // i - import
 
-  if (e.ctrlKey && e.key === 'u') window.scrollTo({ top: 0, behavior: 'smooth' });
-  if (e.ctrlKey && e.key === 'd') window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-  if (e.ctrlKey && e.key === 's')
+  if ((e.ctrlKey || e.metaKey) && e.key === 'u') window.scrollTo({ top: 0, behavior: 'smooth' });
+  if ((e.ctrlKey || e.metaKey) && e.key === 'd') window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  if ((e.ctrlKey || e.metaKey) && e.key === 's')
     saveOptions().then(() => {
       restoreOptions();
       clearAllInputValues();
     });
-  if (e.ctrlKey && e.key === 'e') exportData();
-  if (e.ctrlKey && e.key === 'i') importData();
+  if ((e.ctrlKey || e.metaKey) && e.key === 'e') exportData();
+  if ((e.ctrlKey || e.metaKey) && e.key === 'i') importData();
 };
