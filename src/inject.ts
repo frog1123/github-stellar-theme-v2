@@ -281,9 +281,16 @@ chrome.storage.sync.get<typeof properties>(properties, async items => {
     text2.setAttributeNode(text2Style);
     const text3 = document.createElement('span');
     text3.textContent = 'BANNER';
+    const text4 = document.createElement('span');
+    const text4class = document.createAttribute('class');
+    text4class.value = 'color-fg-muted';
+    text4.setAttributeNode(text4class);
+    text4.textContent = '.webm';
+
     textContainer.appendChild(text1);
     textContainer.appendChild(text2);
     textContainer.appendChild(text3);
+    textContainer.appendChild(text4);
 
     node.appendChild(textContainer);
     node.appendChild(img);
