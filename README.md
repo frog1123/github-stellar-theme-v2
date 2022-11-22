@@ -20,3 +20,6 @@ tested on
 - [ ] firefox
 
 colors can be changed by clicking the extension and click 'settings'
+
+
+themes can be found here -> https://github.com/frog1123/github-stellar-theme-v2/tree/master/themes
