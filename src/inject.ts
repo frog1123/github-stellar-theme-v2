@@ -247,7 +247,7 @@ chrome.storage.sync.get<typeof properties>(properties, async items => {
 
     const img = document.createElement('img');
     const imgSrc = document.createAttribute('src');
-    imgSrc.value = 'https://frogdude1123.vercel.app/wallpaper.webm';
+    imgSrc.value = 'https://raw.githubusercontent.com/frog1123/banner/master/banner.webm';
     img.setAttributeNode(imgSrc);
     const imgClass = document.createAttribute('class');
     imgClass.value = 'stellar-injected-banner-img';
