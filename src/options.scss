@@ -352,11 +352,12 @@ label:active:after {
 
 #hotkeys-note {
   display: grid;
-  grid-auto-flow: column;
+  grid-template-columns: repeat(4, max-content);
   width: max-content;
   margin: auto;
   grid-gap: 4px;
   place-items: center;
+  max-height: 22px;
 
   & img {
     width: 16px;
