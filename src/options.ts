@@ -442,7 +442,6 @@ const importData = () => {
 
 document.onkeydown = e => {
   e = e || window.event;
-  if (e.ctrlKey || e.metaKey) e.preventDefault();
 
   // u - top
   // d - bottom
@@ -450,13 +449,27 @@ document.onkeydown = e => {
   // e - export
   // i - import
 
-  if ((e.ctrlKey || e.metaKey) && e.key === 'u') window.scrollTo({ top: 0, behavior: 'smooth' });
-  if ((e.ctrlKey || e.metaKey) && e.key === 'd') window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-  if ((e.ctrlKey || e.metaKey) && e.key === 's')
+  if ((e.ctrlKey || e.metaKey) && e.key === 'u') {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
+    e.preventDefault();
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  }
+  if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+    e.preventDefault();
     saveOptions().then(() => {
       restoreOptions();
       clearAllInputValues();
     });
-  if ((e.ctrlKey || e.metaKey) && e.key === 'e') exportData();
-  if ((e.ctrlKey || e.metaKey) && e.key === 'i') importData();
+  }
+  if ((e.ctrlKey || e.metaKey) && e.key === 'e') {
+    e.preventDefault();
+    exportData();
+  }
+  if ((e.ctrlKey || e.metaKey) && e.key === 'i') {
+    e.preventDefault();
+    importData();
+  }
 };
