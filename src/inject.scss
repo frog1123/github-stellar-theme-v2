@@ -75,3 +75,26 @@ input[type='radio'] {
   fill: var(--stellar-injected-activity-overview-fill) !important;
   stroke: var(--stellar-injected-activity-overview-stroke) !important;
 }
+
+.stellar-injected-banner-container {
+  width: 100%;
+  background-color: var(--color-canvas-default);
+  border-color: var(--color-border-default);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 6px;
+  padding: 24px;
+  margin-top: 24px;
+  display: grid;
+  grid-template-rows: max-content max-content;
+}
+
+.stellar-injected-banner-img {
+  width: 100%;
+  border-radius: 6px;
+  max-height: 300px;
+}
+
+.stellar-injected-cursor-pointer {
+  cursor: pointer !important;
+}

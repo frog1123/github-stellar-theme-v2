@@ -238,4 +238,78 @@ chrome.storage.sync.get<typeof properties>(properties, async items => {
   document.head.appendChild(styleSheet);
 
   if (items.stellarSettingEnableLogs === true) console.log(items.stellarInjectedExtraRules);
+
+  const addBanner = async () => {
+    const node = document.createElement('div');
+    const nodeClass = document.createAttribute('class');
+    nodeClass.value = 'stellar-injected-banner-container';
+    node.setAttributeNode(nodeClass);
+
+    const img = document.createElement('img');
+    const imgSrc = document.createAttribute('src');
+    imgSrc.value = 'https://frogdude1123.vercel.app/wallpaper.webm';
+    img.setAttributeNode(imgSrc);
+    const imgClass = document.createAttribute('class');
+    imgClass.value = 'stellar-injected-banner-img';
+    img.setAttributeNode(imgClass);
+
+    const textContainer = document.createElement('div');
+    const textContainerClass = document.createAttribute('class');
+    textContainerClass.value = 'text-mono text-small mb-3';
+    textContainer.setAttributeNode(textContainerClass);
+    const text1 = document.createElement('a');
+    text1.textContent = 'stellar';
+    const text1Class = document.createAttribute('class');
+    text1Class.value = 'no-underline Link--primary stellar-injected-cursor-pointer';
+    const text1Href = document.createAttribute('href');
+    text1Href.value = 'https://chrome.google.com/webstore/detail/github-stellar-theme/chkkhpmjibgmacpgidnmmdolkdbfheha';
+    const text1Rel = document.createAttribute('rel');
+    text1Rel.value = 'noreferrer noopener';
+    const text1Target = document.createAttribute('target');
+    text1Target.value = '_blank';
+    text1.setAttributeNode(text1Class);
+    text1.setAttributeNode(text1Href);
+    text1.setAttributeNode(text1Rel);
+    text1.setAttributeNode(text1Target);
+    const text2 = document.createElement('p');
+    text2.textContent = '/';
+    const text2Class = document.createAttribute('class');
+    text2Class.value = 'color-fg-muted d-inline-block';
+    text2.setAttributeNode(text2Class);
+    const text2Style = document.createAttribute('style');
+    text2Style.value = 'padding: 0px 2px;';
+    text2.setAttributeNode(text2Style);
+    const text3 = document.createElement('span');
+    text3.textContent = 'BANNER';
+    textContainer.appendChild(text1);
+    textContainer.appendChild(text2);
+    textContainer.appendChild(text3);
+
+    node.appendChild(textContainer);
+    node.appendChild(img);
+
+    const layout = document.querySelector('body > div.application-main > main > div.container-xl.px-3.px-md-4.px-lg-5 > div > div.Layout-main');
+    if (typeof layout === 'undefined' || layout === null) return;
+    layout?.insertBefore(node, layout.children[1]);
+  };
+
+  let url = window.location.href;
+  let urlVars = window.location.search;
+
+  if (url.includes('https://github.com/frog1123', 0) || url.includes('http://github.com/frog1123', 0)) {
+    addBanner();
+    setInterval(() => {
+      url = window.location.href;
+      urlVars = window.location.search;
+
+      const bannerContainer = document.querySelector('.stellar-injected-banner-container') as any;
+      if (url.includes('?tab=repositories') || url.includes('?tab=projects') || url.includes('?tab=packages') || url.includes('?tab=stars')) {
+        if (typeof bannerContainer === 'undefined' || bannerContainer === null) addBanner();
+        bannerContainer.style = 'display: none;';
+      } else {
+        if (typeof bannerContainer === 'undefined' || bannerContainer === null) addBanner();
+        if (bannerContainer) bannerContainer.style = 'display: grid;';
+      }
+    }, 500);
+  }
 });
