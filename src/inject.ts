@@ -221,7 +221,7 @@ chrome.storage.sync.get<typeof properties>(properties, async items => {
 
   const fontSheet = document.createElement('style');
   fontSheet.innerText = `
-  .blob-code-inner, .CodeMirror-lines {
+  .blob-code-inner, .CodeMirror-lines, pre, code {
     font-family: 'Fira Code', monospace !important;
   }`;
   if (items.stellarInjectedEnableFiraCode === true) document.head.appendChild(fontSheet);
