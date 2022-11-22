@@ -442,9 +442,7 @@ const importData = () => {
 
 document.onkeydown = e => {
   e = e || window.event;
-  e.preventDefault();
-
-  console.log(e.ctrlKey, e.key);
+  if (e.ctrlKey || e.metaKey) e.preventDefault();
 
   // u - top
   // d - bottom
