@@ -64,7 +64,8 @@ input[type='radio'] {
 
 .markdown-body .highlight pre,
 .markdown-body pre,
-#repo-content-pjax-container > div > div > div > div {
+#repo-content-pjax-container > div > div > div > div,
+body > div.application-main > main > div.container-xl.px-3.px-md-4.px-lg-5 > div > div.Layout-main > div {
   &::-webkit-scrollbar {
     // display: none;
     height: 8px !important;
