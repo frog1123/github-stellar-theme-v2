@@ -473,3 +473,25 @@ document.onkeydown = e => {
     importData();
   }
 };
+
+const hiddenElements = document.querySelectorAll('.hidden-text');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible-text');
+    else entry.target.classList.remove('visible-text');
+  });
+});
+
+hiddenElements.forEach(el => observer.observe(el));
+
+const hiddenSideElements = document.querySelectorAll('.hidden-side-text');
+
+const sideObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible-side-text');
+    else entry.target.classList.remove('visible-side-text');
+  });
+});
+
+hiddenSideElements.forEach(el => sideObserver.observe(el));
