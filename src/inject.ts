@@ -179,36 +179,6 @@ chrome.storage.sync.get<typeof properties>(properties, async items => {
       --stellar-injected-topic-tag-transition-duration: ${items.stellarInjectedTopicTagTransitionDuration} !important;
       --stellar-injected-activity-overview-fill: ${items.stellarInjectedActivityOverviewFill} !important;
       --stellar-injected-activity-overview-stroke: ${items.stellarInjectedActivityOverviewStroke} !important;
-
-      --color-prettylights-syntax-comment: #768390 !important;
-      --color-prettylights-syntax-constant: #6cb6ff !important;
-      --color-prettylights-syntax-entity: #dcbdfb !important;
-      --color-prettylights-syntax-storage-modifier-import: #adbac7 !important;
-      --color-prettylights-syntax-entity-tag: #8ddb8c !important;
-      --color-prettylights-syntax-keyword: #f47067 !important;
-      --color-prettylights-syntax-string: #96d0ff !important;
-      --color-prettylights-syntax-variable: #f69d50 !important;
-      --color-prettylights-syntax-brackethighlighter-unmatched: #e5534b !important;
-      --color-prettylights-syntax-invalid-illegal-text: #cdd9e5 !important;
-      --color-prettylights-syntax-invalid-illegal-bg: #922323 !important;
-      --color-prettylights-syntax-carriage-return-text: #cdd9e5 !important;
-      --color-prettylights-syntax-carriage-return-bg: #ad2e2c !important;
-      --color-prettylights-syntax-string-regexp: #8ddb8c !important;
-      --color-prettylights-syntax-markup-list: #eac55f !important;
-      --color-prettylights-syntax-markup-heading: #316dca !important;
-      --color-prettylights-syntax-markup-italic: #adbac7 !important;
-      --color-prettylights-syntax-markup-bold: #adbac7 !important;
-      --color-prettylights-syntax-markup-deleted-text: #ffd8d3 !important;
-      --color-prettylights-syntax-markup-deleted-bg: #78191b !important;
-      --color-prettylights-syntax-markup-inserted-text: #b4f1b4 !important;
-      --color-prettylights-syntax-markup-inserted-bg: #1b4721 !important;
-      --color-prettylights-syntax-markup-changed-text: #ffddb0 !important;
-      --color-prettylights-syntax-markup-changed-bg: #682d0f !important;
-      --color-prettylights-syntax-markup-ignored-text: #adbac7 !important;
-      --color-prettylights-syntax-markup-ignored-bg: #255ab2 !important;
-      --color-prettylights-syntax-meta-diff-range: #dcbdfb !important;
-      --color-prettylights-syntax-brackethighlighter-angle: #768390 !important;
-      --color-prettylights-syntax-sublimelinter-gutter-mark: #545d68 !important;
     }`;
 
   const sheet = document.styleSheets[0];
